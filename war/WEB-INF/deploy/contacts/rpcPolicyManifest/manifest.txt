@@ -1,0 +1,3 @@
+# Module contacts
+# RPC service class, partial path of RPC policy file
+com.mytek.savonline.client.ContactsService, 88373AB3FA5C47B9DE231D1E7DDA8154.gwt.rpc

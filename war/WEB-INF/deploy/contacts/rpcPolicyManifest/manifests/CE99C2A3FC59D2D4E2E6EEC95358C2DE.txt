@@ -1,0 +1,2 @@
+serviceClass: com.mytek.savonline.client.ContactsService
+path: 88373AB3FA5C47B9DE231D1E7DDA8154.gwt.rpc
