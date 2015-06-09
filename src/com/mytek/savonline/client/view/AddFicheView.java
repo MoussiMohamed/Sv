@@ -26,16 +26,16 @@ public class AddFicheView extends Composite implements AddFichePresenter.Display
 	private  Button btnAjouter,btnAnnuler;
 	 private  FlexTable flexTableContainerAll;
 	 private  TextBox txtNom,txtPrenom,txtAdresse,txtNumTelPort,txtNumTelFix,txtEmail,txtMotPasse;
-	 private Label lnom,lprenom,ladresse,lnumTelPort,lnumTelFix,lemail,Lpassword,lmodele,lmarque,lnumSerie,lstatut,lcommentaire,ldescriptionPanne;
+	 private Label lnom,lprenom,ladresse,lnumTelPort,lnumTelFix,lemail,Lpassword,lmodele,lmarque,lnumSerie,lstatut,lcommentaire,ldescriptionPanne,laccessoire,lremarque,letat,lObservation;
 	
 
 	private  TextBox txtModele,txtMarque,txtNumeroSerie;
-	private  TextArea txtAriaDescriptionPanne,txtAriaCommEtatFiche/*,txtAriaInformationComplementaire*/;
+	private  TextArea txtAriaDescriptionPanne,txtAriaCommEtatFiche,txtAriaAccessoires,txtAriaRemarque,txtAriaObservation/*,txtAriaInformationComplementaire*/;
 	private  ListBox lstGarantie,lstEtatFiche;
 	
 
 
-	private  TextBox txtDateCreation;
+//	private  TextBox txtDateCreation;
 	// private final TextBox txtNomFournisseur,txtAdresseFournisseur,txtNumTelFournisseur,txtFaxFournisseur,txtEmailFournisseur;
 	 
 	 
@@ -58,15 +58,19 @@ public class AddFicheView extends Composite implements AddFichePresenter.Display
 		lstatut=new Label();
 		lcommentaire=new Label();
 		ldescriptionPanne=new Label();
+		laccessoire=new Label("");
 		
 		
 		//creation de textAriaDescriptionPanne
 		txtAriaDescriptionPanne=new TextArea();
 		txtAriaCommEtatFiche=new TextArea();
+		txtAriaAccessoires=new TextArea();
+		txtAriaRemarque=new TextArea();
+		txtAriaObservation=new TextArea();
 		//txtAriaInformationComplementaire=new TextArea();
 		
 		//creation de TextBox de date de creation de fiche
-		txtDateCreation=new TextBox();
+//		txtDateCreation=new TextBox();
 		
 		//creattion de label de resultat d insertion
 		lblResultInsert=new Label();
@@ -98,13 +102,13 @@ public class AddFicheView extends Composite implements AddFichePresenter.Display
 		lstGarantie.addItem("Oui");
 		lstGarantie.addItem("Non");
 		lstEtatFiche=new ListBox();
-		lstEtatFiche.addItem("en attente de traitement");
-		lstEtatFiche.addItem("Ouvert");
-		lstEtatFiche.addItem("En cours de verification");
-		lstEtatFiche.addItem("En attante de confirmation de devis");
-		lstEtatFiche.addItem("En cours de reparaion");
-		lstEtatFiche.addItem("reparation termine");
-		lstEtatFiche.addItem("Ferme");
+		lstEtatFiche.addItem("Reception");
+		lstEtatFiche.addItem("En cours de diagnostique");
+		lstEtatFiche.addItem("Materiel chez le fournisseur");
+		lstEtatFiche.addItem("Sous devis");
+		lstEtatFiche.addItem("Reparation");
+		lstEtatFiche.addItem("Sortie");
+		lstEtatFiche.addItem("Preleve");
 		
 		
 		//creation de FlexTable
@@ -132,8 +136,9 @@ public class AddFicheView extends Composite implements AddFichePresenter.Display
 	    
 	    
 flexTableAll.setWidget(1, 0, createClient());
-flexTableAll.setWidget(2, 0, createMateriel());
-flexTableAll.setWidget(1, 1, createFiche());
+flexTableAll.setWidget(2, 0, createFiche());
+flexTableAll.setWidget(1, 1, createMateriel());
+
 //flexTableAll.setWidget(2, 1, createFournisseur());
 flexTableAll.setWidget(3, 0, btnAjouter);
 flexTableAll.setWidget(3, 1, btnAnnuler);
@@ -228,6 +233,11 @@ decPanelContainerAll.add(flexTableContainerAll);
 	    layout2.setHTML(5,0,"Description de panne");
 	    layout2.setWidget(5, 1, txtAriaDescriptionPanne);
 	    layout2.setWidget(5, 2, ldescriptionPanne);
+	    layout2.setHTML(6,0,"Accessoires");
+	    layout2.setWidget(6, 1, txtAriaAccessoires);
+	    layout2.setHTML(7,0,"Remarques");
+	    layout2.setWidget(7, 1, txtAriaRemarque);
+
 //	    layout2.setHTML(6,0,"Information complementaire");
 //	    layout2.setWidget(6, 1, txtAriaInformationComplementaire);
 	    
@@ -296,13 +306,15 @@ decPanelContainerAll.add(flexTableContainerAll);
 	        0, 0, HasHorizontalAlignment.ALIGN_CENTER);
 
 	    // Add some standard form options
-	    layout5.setHTML(1, 0, "Date de creation");
-	    layout5.setWidget(1, 1, txtDateCreation);
-	    layout5.setHTML(2, 0, "Etat de fiche");
-	    layout5.setWidget(2, 1, lstEtatFiche);
-	    layout5.setHTML(3, 0, "Commentaire");
-	    layout5.setWidget(3, 1, txtAriaCommEtatFiche);
-	    layout5.setWidget(3, 2, ldescriptionPanne);
+//	    layout5.setHTML(1, 0, "Date de creation");
+//	    layout5.setWidget(1, 1, txtDateCreation);
+	    layout5.setHTML(1, 0, "Etat de fiche");
+	    layout5.setWidget(1, 1, lstEtatFiche);
+	    layout5.setHTML(2, 0, "Commentaire");
+	    layout5.setWidget(2, 1, txtAriaCommEtatFiche);
+	    layout5.setWidget(2, 2, ldescriptionPanne);
+	    layout5.setHTML(3, 0, "Observation");
+	    layout5.setWidget(3, 1, txtAriaObservation);
 
 
 
@@ -433,9 +445,9 @@ public String getLstEtatFiche() {
 	return lstEtatFiche.getValue(lstEtatFiche.getSelectedIndex());
 }
 
-public HasValue<String> getTxtDateCreation() {
-	return txtDateCreation;
-}
+//public HasValue<String> getTxtDateCreation() {
+//	return txtDateCreation;
+//}
 
 public void setDataEdit(JSONArray data){
 	JSONObject jsonObject = new JSONObject();
@@ -540,6 +552,27 @@ public void setLstatut(String lstatut) {
 public void setLcommentaire(String lcommentaire) {
 	this.lcommentaire.setText(lcommentaire);
 }
+
+
+
+public HasValue<String> getTxtAriaAccessoires() {
+	return txtAriaAccessoires;
+}
+
+
+
+public HasValue<String> getTxtAriaRemarque() {
+	return txtAriaRemarque;
+}
+
+
+
+
+public HasValue<String> getTxtAriaObservation() {
+	return txtAriaObservation;
+}
+
+
 
 
 

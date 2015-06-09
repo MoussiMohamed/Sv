@@ -32,9 +32,12 @@ public class AddFichePresenter implements Presenter {
 
 		HasClickHandlers getBtnAnnuler();
 		HasClickHandlers getBtnAddFicheRec();
-		HasValue<String> getTxtDateCreation();
+//		HasValue<String> getTxtDateCreation();
 		HasValue<String> getTxtAriaDescriptionPanne();
 		HasValue<String> getTxtAriaCommEtatFiche();
+		HasValue<String> getTxtAriaObservation();
+		HasValue<String> getTxtAriaRemarque();
+		HasValue<String> getTxtAriaAccessoires();
 		
 		String getLstGarantie();
 		String getLstEtatFiche();
@@ -139,12 +142,15 @@ public class AddFichePresenter implements Presenter {
 	    			jsonObj.put("NumSerie", new JSONString(display.getTxtNumeroSerie().getValue()));
 	    			jsonObj.put("statutMateriel", new JSONString(display.getLstGarantie()));
 	    			jsonObj.put("commentaire_etat_Fiche", new JSONString(display.getTxtAriaCommEtatFiche().getValue()));
+	    			jsonObj.put("accessoire", new JSONString(display.getTxtAriaAccessoires().getValue()));
+	    			jsonObj.put("remarque", new JSONString(display.getTxtAriaRemarque().getValue()));
+	    			jsonObj.put("observation", new JSONString(display.getTxtAriaObservation().getValue()));
 //	    			jsonObj.put("NomFournisseur", new JSONString(display.getTxtNomFournisseur().getValue()));
 //	    			jsonObj.put("AdresseFournisseur", new JSONString(display.getTxtAdresseFournisseur().getValue()));
 //	    			jsonObj.put("NumTelFournisseur", new JSONString(display.getTxtNumTelFournisseur().getValue()));
 //	    			jsonObj.put("NumFaxFournisseur", new JSONString(display.getTxtFaxFournisseur().getValue()));
 //	    			jsonObj.put("EmailFournisseur", new JSONString(display.getTxtEmailFournisseur().getValue()));
-	    			jsonObj.put("dateCreationFiche", new JSONString(display.getTxtDateCreation().getValue()));
+//	    			jsonObj.put("dateCreationFiche", new JSONString(display.getTxtDateCreation().getValue()));
 	    			jsonObj.put("EtatFiche", new JSONString(display.getLstEtatFiche()));
 	    			jsonObj.put("DescPanne", new JSONString(display.getTxtAriaDescriptionPanne().getValue()));
 	    			//jsonObj.put("InformationComplementaire", new JSONString(display.getTxtAriaInformationComplementaire().getValue()));
@@ -204,7 +210,7 @@ public class AddFichePresenter implements Presenter {
 			display.getTxtModele().setValue("");
 			display.getTxtMarque().setValue("");
 			display.getTxtNumeroSerie().setValue("");
-			display.getTxtDateCreation().setValue("");
+//			display.getTxtDateCreation().setValue("");
 			display.getTxtAriaDescriptionPanne().setValue("");
 			//display.getTxtAriaInformationComplementaire().setValue("");
 			}

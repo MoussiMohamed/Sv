@@ -101,7 +101,10 @@ function AfficheTechnicien($db,$obj){
 		$NumSerie=$obj->{'NumSerie'};
 		$StatMat=$obj->{'statutMateriel'};
 		$commentaire_etat_F=$obj->{'commentaire_etat_Fiche'};
-		$dateCreationFiche=$obj->{'dateCreationFiche'};
+		$accessoireMat=$obj->{'accessoire'};
+		$remarqueMat=$obj->{'remarque'};
+		$observationFiche=$obj->{'observation'};
+		$dateCreationFiche=date('Y-m-d G:i:s');
 		$EtatFiche=$obj->{'EtatFiche'};
 		$DescPanne=$obj->{'DescPanne'};
 		
@@ -115,12 +118,12 @@ function AfficheTechnicien($db,$obj){
 	$res_id_client = $db->last_id();
 	
 		//insertion data in table materiel
-		$resMateriel="insert into materiel(modele,marque,numero_serie,statut_materiel) values('$Modele','$Marque','$NumSerie','$StatMat')";
+		$resMateriel="insert into materiel(modele,marque,numero_serie,statut_materiel,accessoire,remarque) values('$Modele','$Marque','$NumSerie','$StatMat','$accessoireMat','$remarqueMat')";
 		$resExecuteMateriel=$db->rq($resMateriel);
 		$resIdMateriel = $db->last_id();
 	
 		//insertion data in table fiche
-		$resFiche="insert into fiche(date_creation_fiche,id_client,description_panne,id_materiel) values('$dateCreationFiche','$res_id_client','$DescPanne','$resIdMateriel')";
+		$resFiche="insert into fiche(date_creation_fiche,id_client,description_panne,observation,id_materiel) values('$dateCreationFiche','$res_id_client','$DescPanne','$resIdMateriel','$observationFiche')";
 		$resExecuteFiche=$db->rq($resFiche);
 		$res_id_fiche = $db->last_id();
 	
@@ -180,7 +183,7 @@ function updateFiche($db,$obj){
 	$NumSerie=$obj->{'NumSerie'};
 	$StatMat=$obj->{'statutMateriel'};
 	$commentaire_etat_F=$obj->{'commentaire_etat_Fiche'};
-	$dateCreationFiche=$obj->{'dateCreationFiche'};
+	$dateCreationFiche=date('Y-m-d G:i:s');
 	$EtatFiche=$obj->{'EtatFiche'};
 	$DescPanne=$obj->{'DescPanne'};
 	
