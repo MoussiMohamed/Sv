@@ -123,7 +123,7 @@ function AfficheTechnicien($db,$obj){
 		$resIdMateriel = $db->last_id();
 	
 		//insertion data in table fiche
-		$resFiche="insert into fiche(date_creation_fiche,id_client,description_panne,observation,id_materiel) values('$dateCreationFiche','$res_id_client','$DescPanne','$resIdMateriel','$observationFiche')";
+		$resFiche="insert into fiche(date_creation_fiche,id_client,description_panne,observation,id_materiel) values('$dateCreationFiche','$res_id_client','$DescPanne','$observationFiche','$resIdMateriel')";
 		$resExecuteFiche=$db->rq($resFiche);
 		$res_id_fiche = $db->last_id();
 	

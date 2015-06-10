@@ -212,6 +212,9 @@ public class AddFichePresenter implements Presenter {
 			display.getTxtNumeroSerie().setValue("");
 //			display.getTxtDateCreation().setValue("");
 			display.getTxtAriaDescriptionPanne().setValue("");
+			display.getTxtAriaAccessoires().setValue("");
+			display.getTxtAriaRemarque().setValue("");
+			display.getTxtAriaObservation().setValue("");
 			//display.getTxtAriaInformationComplementaire().setValue("");
 			}
 		});
