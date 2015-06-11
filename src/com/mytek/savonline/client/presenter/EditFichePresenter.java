@@ -63,7 +63,10 @@ public class EditFichePresenter implements Presenter {
 		HasClickHandlers getBtnEditFiche();
 		HasValue<String> getTxtDateCreation();
 		HasValue<String> getTxtAriaDescriptionPanne();
-		HasValue<String> getTxtAriaCommEtatFiche();		
+		HasValue<String> getTxtAriaCommEtatFiche();	
+		HasValue<String> getTxtAriaAccessoires();
+		HasValue<String> getTxtAriaRemarque();
+		HasValue<String> getTxtAriaObservation();
 		String getLstGarantie();
 		String getLstEtatFiche();
 		HasClickHandlers getBtnAssigner();
@@ -237,6 +240,9 @@ public class EditFichePresenter implements Presenter {
 						jsonObj.put("dateCreationFiche", new JSONString(display.getTxtDateCreation().getValue()));
 						jsonObj.put("EtatFiche", new JSONString(display.getLstEtatFiche()));
 						jsonObj.put("DescPanne", new JSONString(display.getTxtAriaDescriptionPanne().getValue()));
+						jsonObj.put("Accessoire", new JSONString(display.getTxtAriaAccessoires().getValue()));
+						jsonObj.put("Remarque", new JSONString(display.getTxtAriaRemarque().getValue()));
+						jsonObj.put("Observation", new JSONString(display.getTxtAriaObservation().getValue()));
 
 
 						requestBuilder.setHeader(ct, ct2);

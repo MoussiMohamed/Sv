@@ -186,6 +186,9 @@ function updateFiche($db,$obj){
 	$dateCreationFiche=date('Y-m-d G:i:s');
 	$EtatFiche=$obj->{'EtatFiche'};
 	$DescPanne=$obj->{'DescPanne'};
+	$Accessoire=$obj->{'Accessoire'};
+	$Remarque=$obj->{'Remarque'};
+	$Observation=$obj->{'Observation'};
 	
 	//requette update fiche
 	
@@ -201,6 +204,9 @@ function updateFiche($db,$obj){
 	description_panne='$DescPanne',
 	nom_etat='$EtatFiche',
 	commentaire_etat='$commentaire_etat_F',
+	accessoire='$Accessoire',
+	remarque='$Remarque',
+	observation='$Observation',
 	modele='$Modele',
 	marque='$Marque',
 	numero_serie='$NumSerie',

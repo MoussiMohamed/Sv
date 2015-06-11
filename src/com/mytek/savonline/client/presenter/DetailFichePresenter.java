@@ -49,6 +49,7 @@ public class DetailFichePresenter implements Presenter {
 		HasValue<String> getTxtDateCreation();
 		HasValue<String> getTxtAriaDescriptionPanne();
 		HasValue<String> getTxtAriaCommEtatFiche();
+		
 		//HasValue<String> getTxtAriaInformationComplementaire();
 		
 		void setLblResAffiche(String ResAffich);

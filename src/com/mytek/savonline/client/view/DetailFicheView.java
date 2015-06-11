@@ -21,21 +21,17 @@ import com.mytek.savonline.client.presenter.DetailFichePresenter;
 public class DetailFicheView extends Composite implements DetailFichePresenter.Display{
 	
 
-	private  Button btnAssigner;
+	 private  Button btnAssigner;
 	 private  FlexTable flexTableContainerAll;
 	 private  TextBox txtNom,txtPrenom,txtAdresse,txtNumTelPort,txtNumTelFix,txtEmail,txtMotPasse;
 	 
 	private  TextBox txtModele,txtMarque,txtNumeroSerie;
 	private  TextArea txtAriaDescriptionPanne,txtAriaCommEtatFiche;
 	private  TextBox txtGarantie,txtEtatFiche;
-	
-
 
 	private  TextBox txtDateCreation;
 	// private final TextBox txtNomFournisseur,txtAdresseFournisseur,txtNumTelFournisseur,txtFaxFournisseur,txtEmailFournisseur;
 	 
-	 
-
 	private  FlexTable flexTableAll;	
 	 private  Label lblResAffich;
 	public DetailFicheView() {
@@ -44,6 +40,7 @@ public class DetailFicheView extends Composite implements DetailFichePresenter.D
 		txtAriaDescriptionPanne.setEnabled(false);
 		txtAriaCommEtatFiche=new TextArea();
 		txtAriaCommEtatFiche.setEnabled(false);
+		
 		//txtAriaInformationComplementaire=new TextArea();
 		
 		//creation de TextBox de date de creation de fiche
@@ -193,7 +190,8 @@ decPanelContainerAll.add(flexTableContainerAll);
 	    layout2.setHTML(4,0,"Garantie");
 	    layout2.setWidget(4, 1, txtGarantie);
 	    layout2.setHTML(5,0,"Description de panne");
-	    layout2.setWidget(5, 1, txtAriaDescriptionPanne);   
+	    layout2.setWidget(5, 1, txtAriaDescriptionPanne);
+
 	    
 	    // Wrap the content in a DecoratorPanel
 	    DecoratorPanel decPanel2 = new DecoratorPanel();
@@ -261,6 +259,7 @@ decPanelContainerAll.add(flexTableContainerAll);
 	    layout5.setWidget(2, 1, txtEtatFiche);
 	    layout5.setHTML(3, 0, "Commentaire");
 	    layout5.setWidget(3, 1, txtAriaCommEtatFiche);
+	    
 
 
 
@@ -405,9 +404,11 @@ public void setDataAffiche(JSONArray data){
 			getTxtAriaDescriptionPanne().setValue(jsonObject.get("description_panne").isString().stringValue());
 			getTxtDateCreation().setValue(jsonObject.get("date_creation_fiche").isString().stringValue());
 			getTxtAriaCommEtatFiche().setValue(jsonObject.get("commentaire_etat").isString().stringValue());
+			
 		}
 	}
 }
+
 
 
 }

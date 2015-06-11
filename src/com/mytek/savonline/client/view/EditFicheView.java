@@ -38,7 +38,7 @@ private FlexTable flexDevis;
 	 private  TextBox txtNom,txtPrenom,txtAdresse,txtNumTelPort,txtNumTelFix,txtEmail,txtMotPasse;
 	 private Label lnom,lprenom,ladresse,lnumTelPort,lnumTelFix,lemail,Lpassword,lmodele,lmarque,lnumSerie,lstatut,lcommentaire,ldescriptionPanne;
 	private  TextBox txtModele,txtMarque,txtNumeroSerie;
-	private  TextArea txtAriaDescriptionPanne,txtAriaCommEtatFiche/*,txtAriaInformationComplementaire*/;
+	private  TextArea txtAriaDescriptionPanne,txtAriaCommEtatFiche,txtAriaAccessoires,txtAriaRemarque,txtAriaObservation/*,txtAriaInformationComplementaire*/;
 	private  ListBox lstGarantie,lstEtatFiche,lstTechnicien;
 	private Label lbltitreDevis,lblTitreRapport,lblTitreComment,lblTitreIdDevis;
 	private TextArea txtRapport,txtDevis,txtCommentaireDevis;
@@ -73,6 +73,9 @@ private FlexTable flexDevis;
 		btnFermer=new Button("Fermer");
 		txtAriaCommentaire=new TextArea();
 		txtAriaCommentaire.setPixelSize(300, 100);
+		txtAriaAccessoires= new TextArea();		
+		txtAriaRemarque = new TextArea();		
+		txtAriaObservation = new TextArea();	
 		txtAriaDevis=new TextArea();
 		txtAriaDevis.setPixelSize(300, 100);
 		txtAriaRapport=new TextArea();
@@ -322,6 +325,10 @@ decPanelContainerAll.add(flexTableContainerAll);
 	    layout2.setHTML(5,0,"Description de panne");
 	    layout2.setWidget(5, 1, txtAriaDescriptionPanne);
 	    layout2.setWidget(5, 2, ldescriptionPanne);
+	    layout2.setHTML(6,0,"Accessoires");
+	    layout2.setWidget(6, 1, txtAriaAccessoires);
+	    layout2.setHTML(7,0,"Remarques");
+	    layout2.setWidget(7, 1, txtAriaRemarque);
 
 	    // Wrap the content in a DecoratorPanel
 	    DecoratorPanel decPanel2 = new DecoratorPanel();
@@ -385,8 +392,10 @@ decPanelContainerAll.add(flexTableContainerAll);
 	    layout5.setHTML(3, 0, "Commentaire");
 	    layout5.setWidget(3, 1, txtAriaCommEtatFiche);
 	    layout5.setWidget(3, 2, ldescriptionPanne);
-	    cellFormatter.setColSpan(4, 0, 3);
-	    layout5.setWidget(4, 0, btnCreateDevis);
+	    layout5.setHTML(4, 0, "Observation");
+	    layout5.setWidget(4, 1, txtAriaObservation);
+	    cellFormatter.setColSpan(5, 0, 3);
+	    layout5.setWidget(5, 0, btnCreateDevis);
 
 
 
@@ -650,6 +659,9 @@ public void setDataEdit(JSONArray data,String TypeElement){
 			getTxtAriaDescriptionPanne().setValue(jsonObject.get("description_panne").isString().stringValue());
 			getTxtDateCreation().setValue(jsonObject.get("date_creation_fiche").isString().stringValue());
 			getTxtAriaCommEtatFiche().setValue(jsonObject.get("commentaire_etat").isString().stringValue());
+			getTxtAriaAccessoires().setValue(jsonObject.get("accessoire").isString().stringValue());
+			getTxtAriaRemarque().setValue(jsonObject.get("remarque").isString().stringValue());
+			getTxtAriaObservation().setValue(jsonObject.get("observation").isString().stringValue());
 		
 			if (jsonObject.get("rapport_diagnostique")!=null ){
 		    		btnCreateDevis.setVisible(true);
@@ -683,6 +695,9 @@ public void setDataEdit(JSONArray data,String TypeElement){
 		txtNumeroSerie.setEnabled(false);
 		lstGarantie.setEnabled(false);
 		txtAriaDescriptionPanne.setEnabled(false);
+		txtAriaAccessoires.setEnabled(false);
+		txtAriaRemarque.setEnabled(false);
+		txtAriaObservation.setEnabled(false);
 		txtDateCreation.setEnabled(false);
 		lstEtatFiche.setEnabled(false);
 		txtAriaCommEtatFiche.setEnabled(false);
@@ -707,6 +722,9 @@ public void setDataEdit(JSONArray data,String TypeElement){
 				getTxtAriaDescriptionPanne().setValue(jsonObject.get("description_panne").isString().stringValue());
 				getTxtDateCreation().setValue(jsonObject.get("date_creation_fiche").isString().stringValue());
 				getTxtAriaCommEtatFiche().setValue(jsonObject.get("commentaire_etat").isString().stringValue());
+				getTxtAriaAccessoires().setValue(jsonObject.get("accessoire").isString().stringValue());
+				getTxtAriaRemarque().setValue(jsonObject.get("remarque").isString().stringValue());
+				getTxtAriaObservation().setValue(jsonObject.get("observation").isString().stringValue());
 			
 				    if (jsonObject.get("rapport_diagnostique")!=null ){
 				    	btnCreateDevis.setVisible(true);
@@ -878,5 +896,17 @@ public Button getBtnModif(){
 
 public Button getBtnAnnulerF(){
 	return btnAnnuler;
+}
+
+public HasValue<String> getTxtAriaAccessoires() {
+	return txtAriaAccessoires;
+}
+
+public HasValue<String> getTxtAriaRemarque() {
+	return txtAriaRemarque;
+}
+
+public HasValue<String> getTxtAriaObservation() {
+	return txtAriaObservation;
 }
 }
