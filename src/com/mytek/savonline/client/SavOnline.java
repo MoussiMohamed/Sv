@@ -11,7 +11,7 @@ public class SavOnline implements EntryPoint {
 
 	public void onModuleLoad() {
 
-		String url="http://127.0.0.1:8880/savOnlineMyTek/src/com/mytek/savonline/server/dispatcher.php";
+		String url="http://127.0.0.1:8881/savOnlineMyTek/src/com/mytek/savonline/server/dispatcher.php";
 		
 
 		HandlerManager eventBus = new HandlerManager(null);
