@@ -104,6 +104,9 @@ function AfficheTechnicien($db,$obj){
 		$accessoireMat=$obj->{'accessoire'};
 		$remarqueMat=$obj->{'remarque'};
 		$observationFiche=$obj->{'observation'};
+		$raye=$obj->{'Raye'};
+		$subit_choc=$obj->{'SubitUnChoc'};
+		$vis_ouvert=$obj->{'VisOuvert'};
 		$dateCreationFiche=date('Y-m-d G:i:s');
 		$EtatFiche=$obj->{'EtatFiche'};
 		$DescPanne=$obj->{'DescPanne'};
@@ -118,7 +121,7 @@ function AfficheTechnicien($db,$obj){
 	$res_id_client = $db->last_id();
 	
 		//insertion data in table materiel
-		$resMateriel="insert into materiel(modele,marque,numero_serie,statut_materiel,accessoire,remarque) values('$Modele','$Marque','$NumSerie','$StatMat','$accessoireMat','$remarqueMat')";
+		$resMateriel="insert into materiel(modele,marque,numero_serie,statut_materiel,accessoire,remarque,raye,subit_choc,vis_ouvert) values('$Modele','$Marque','$NumSerie','$StatMat','$accessoireMat','$remarqueMat','$raye','$subit_choc','$vis_ouvert')";
 		$resExecuteMateriel=$db->rq($resMateriel);
 		$resIdMateriel = $db->last_id();
 	
@@ -189,6 +192,9 @@ function updateFiche($db,$obj){
 	$Accessoire=$obj->{'Accessoire'};
 	$Remarque=$obj->{'Remarque'};
 	$Observation=$obj->{'Observation'};
+	$raye=$obj->{'Raye'};
+	$subit_choc=$obj->{'SubitUnChoc'};
+	$vis_ouvert=$obj->{'VisOuvert'};
 	
 	//requette update fiche
 	
@@ -207,6 +213,9 @@ function updateFiche($db,$obj){
 	accessoire='$Accessoire',
 	remarque='$Remarque',
 	observation='$Observation',
+	raye='$raye',
+	subit_choc='$subit_choc',
+	vis_ouvert='$vis_ouvert',
 	modele='$Modele',
 	marque='$Marque',
 	numero_serie='$NumSerie',

@@ -67,6 +67,9 @@ public class EditFichePresenter implements Presenter {
 		HasValue<String> getTxtAriaAccessoires();
 		HasValue<String> getTxtAriaRemarque();
 		HasValue<String> getTxtAriaObservation();
+		HasValue<String> getRaye();
+		HasValue<String> getSubitUnChoc();
+		HasValue<String> getVisOuvert();
 		String getLstGarantie();
 		String getLstEtatFiche();
 		HasClickHandlers getBtnAssigner();
@@ -243,7 +246,9 @@ public class EditFichePresenter implements Presenter {
 						jsonObj.put("Accessoire", new JSONString(display.getTxtAriaAccessoires().getValue()));
 						jsonObj.put("Remarque", new JSONString(display.getTxtAriaRemarque().getValue()));
 						jsonObj.put("Observation", new JSONString(display.getTxtAriaObservation().getValue()));
-
+						jsonObj.put("Raye", new JSONString(display.getRaye().getValue()));
+		    			jsonObj.put("SubitUnChoc", new JSONString(display.getSubitUnChoc().getValue()));
+		    			jsonObj.put("VisOuvert", new JSONString(display.getVisOuvert().getValue()));
 
 						requestBuilder.setHeader(ct, ct2);
 						requestBuilder.sendRequest("jsonObj="+jsonObj.toString(), new RequestCallback() {

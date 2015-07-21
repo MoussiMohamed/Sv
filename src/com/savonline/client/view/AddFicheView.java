@@ -29,7 +29,7 @@ public class AddFicheView extends Composite implements AddFichePresenter.Display
 	 private Label lnom,lprenom,ladresse,lnumTelPort,lnumTelFix,lemail,Lpassword,lmodele,lmarque,lnumSerie,lstatut,lcommentaire,ldescriptionPanne,laccessoire,lremarque,letat,lObservation;
 	
 
-	private  TextBox txtModele,txtMarque,txtNumeroSerie;
+	private  TextBox txtModele,txtMarque,txtNumeroSerie,txtRaye,txtSubitUnChoc,txtVisOuvert;
 	private  TextArea txtAriaDescriptionPanne,txtAriaCommEtatFiche,txtAriaAccessoires,txtAriaRemarque,txtAriaObservation/*,txtAriaInformationComplementaire*/;
 	private  ListBox lstGarantie,lstEtatFiche;
 	
@@ -63,10 +63,15 @@ public class AddFicheView extends Composite implements AddFichePresenter.Display
 		
 		//creation de textAriaDescriptionPanne
 		txtAriaDescriptionPanne=new TextArea();
+		txtAriaDescriptionPanne.setHeight("30px");
 		txtAriaCommEtatFiche=new TextArea();
+		txtAriaCommEtatFiche.setHeight("30px");
 		txtAriaAccessoires=new TextArea();
+		txtAriaAccessoires.setHeight("30px");
 		txtAriaRemarque=new TextArea();
+		txtAriaRemarque.setHeight("30px");
 		txtAriaObservation=new TextArea();
+		txtAriaObservation.setHeight("30px");
 		//txtAriaInformationComplementaire=new TextArea();
 		
 		//creation de TextBox de date de creation de fiche
@@ -88,6 +93,9 @@ public class AddFicheView extends Composite implements AddFichePresenter.Display
 		txtModele=new TextBox();
 		txtMarque=new TextBox();
 		txtNumeroSerie=new TextBox();
+		txtRaye=new TextBox();
+		txtSubitUnChoc=new TextBox();
+		txtVisOuvert=new TextBox();
 		
 //		//creation de TextBoxFournisseur
 //		txtNomFournisseur=new TextBox();
@@ -136,8 +144,10 @@ public class AddFicheView extends Composite implements AddFichePresenter.Display
 	    
 	    
 flexTableAll.setWidget(1, 0, createClient());
-flexTableAll.setWidget(2, 0, createFiche());
 flexTableAll.setWidget(1, 1, createMateriel());
+flexTableAll.setWidget(2, 0, createFiche());
+flexTableAll.setWidget(2, 1, createInfoSuppl());
+
 
 //flexTableAll.setWidget(2, 1, createFournisseur());
 flexTableAll.setWidget(3, 0, btnAjouter);
@@ -204,6 +214,7 @@ decPanelContainerAll.add(flexTableContainerAll);
 		
 		
 	}
+	
 	public Widget createMateriel(){
 		
 		 // Create a table to layout the form options
@@ -323,6 +334,37 @@ decPanelContainerAll.add(flexTableContainerAll);
 	    decPanel5.setWidget(layout5);
 	    
 	    return decPanel5;
+	    
+	}
+	
+	public Widget createInfoSuppl(){
+		
+		 // Create a table to layout the form options
+	    FlexTable layout6 = new FlexTable();
+	    layout6.setCellSpacing(6);
+	    FlexCellFormatter cellFormatter = layout6.getFlexCellFormatter();
+
+	    // Add a title to the form
+	    layout6.setHTML(0, 0, "Informations supplementaires");
+	    cellFormatter.setColSpan(0, 0, 2);
+	    cellFormatter.setHorizontalAlignment(
+	        0, 0, HasHorizontalAlignment.ALIGN_CENTER);
+
+	   
+	    layout6.setHTML(1,0,"Raye");
+	    layout6.setWidget(1, 1, txtRaye);
+	    layout6.setHTML(2,0,"A Subit un Choc Apparent");
+	    layout6.setWidget(2, 1, txtSubitUnChoc);
+	    layout6.setHTML(3,0,"Vis Ouvert");
+	    layout6.setWidget(3, 1, txtVisOuvert);
+	    
+
+
+	    // Wrap the content in a DecoratorPanel
+	    DecoratorPanel decPanel6 = new DecoratorPanel();
+	    decPanel6.setWidget(layout6);
+	    
+	    return decPanel6;
 	    
 	}
 	
@@ -533,7 +575,6 @@ public void setLmarque(String lmarque) {
 }
 
 
-
 public void setLnumSerie(String lnumSerie) {
 	this.lnumSerie.setText(lnumSerie);
 }
@@ -547,34 +588,31 @@ public void setLstatut(String lstatut) {
 	this.lstatut.setText(lstatut);
 }
 
-
-
 public void setLcommentaire(String lcommentaire) {
 	this.lcommentaire.setText(lcommentaire);
 }
-
-
 
 public HasValue<String> getTxtAriaAccessoires() {
 	return txtAriaAccessoires;
 }
 
-
-
 public HasValue<String> getTxtAriaRemarque() {
 	return txtAriaRemarque;
 }
-
-
-
 
 public HasValue<String> getTxtAriaObservation() {
 	return txtAriaObservation;
 }
 
+public HasValue<String> getRaye() {
+	return txtRaye;
+}
 
+public HasValue<String> getSubitUnChoc() {
+	return txtSubitUnChoc;
+}
 
-
-
-
+public HasValue<String> getVisOuvert() {
+	return txtVisOuvert;
+}
 }

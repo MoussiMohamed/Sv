@@ -38,6 +38,9 @@ public class AddFichePresenter implements Presenter {
 		HasValue<String> getTxtAriaObservation();
 		HasValue<String> getTxtAriaRemarque();
 		HasValue<String> getTxtAriaAccessoires();
+		HasValue<String> getRaye();
+		HasValue<String> getSubitUnChoc();
+		HasValue<String> getVisOuvert();
 		
 		String getLstGarantie();
 		String getLstEtatFiche();
@@ -145,6 +148,9 @@ public class AddFichePresenter implements Presenter {
 	    			jsonObj.put("accessoire", new JSONString(display.getTxtAriaAccessoires().getValue()));
 	    			jsonObj.put("remarque", new JSONString(display.getTxtAriaRemarque().getValue()));
 	    			jsonObj.put("observation", new JSONString(display.getTxtAriaObservation().getValue()));
+	    			jsonObj.put("Raye", new JSONString(display.getRaye().getValue()));
+	    			jsonObj.put("SubitUnChoc", new JSONString(display.getSubitUnChoc().getValue()));
+	    			jsonObj.put("VisOuvert", new JSONString(display.getVisOuvert().getValue()));
 //	    			jsonObj.put("NomFournisseur", new JSONString(display.getTxtNomFournisseur().getValue()));
 //	    			jsonObj.put("AdresseFournisseur", new JSONString(display.getTxtAdresseFournisseur().getValue()));
 //	    			jsonObj.put("NumTelFournisseur", new JSONString(display.getTxtNumTelFournisseur().getValue()));
@@ -215,6 +221,9 @@ public class AddFichePresenter implements Presenter {
 			display.getTxtAriaAccessoires().setValue("");
 			display.getTxtAriaRemarque().setValue("");
 			display.getTxtAriaObservation().setValue("");
+			display.getRaye().setValue("");
+			display.getSubitUnChoc().setValue("");
+			display.getVisOuvert().setValue("");
 			//display.getTxtAriaInformationComplementaire().setValue("");
 			}
 		});

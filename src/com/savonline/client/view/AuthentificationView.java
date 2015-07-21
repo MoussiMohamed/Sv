@@ -42,7 +42,8 @@ public class AuthentificationView extends Composite implements AuthentificationP
 		btnAuthentifier=new Button("Connexion");
 
 //		btnAuthentifier.setStyleName("btnConnexion");
-		initWidget(authentification());
+//		initWidget(authentification());
+		initWidget(onInitialize());
 	}
 	
 	public Widget authentification(){
@@ -70,6 +71,36 @@ public class AuthentificationView extends Composite implements AuthentificationP
 		decPanel.setStyleName("positionAuthentification");
 		return decPanel;
 	}
+	
+	
+	public Widget onInitialize() {
+	    // Create a table to layout the form options
+	    FlexTable layout = new FlexTable();
+	    layout.setCellSpacing(6);
+	    FlexCellFormatter cellFormatter = layout.getFlexCellFormatter();
+
+	    // Add a title to the form
+	    layout.setHTML(0, 0, "<b>"+"S'authentifier"+"</b>");
+	    cellFormatter.setColSpan(0, 0, 2);
+	    cellFormatter.setHorizontalAlignment(
+	        0, 0, HasHorizontalAlignment.ALIGN_CENTER);
+
+	    // Add some standard form options
+	    layout.setHTML(1, 0, "Login");
+	    layout.setWidget(1, 1, txtLogin);
+	    layout.setWidget(1, 2, lblErrLogin);
+	    layout.setHTML(2, 0, "Mot de passe");
+	    layout.setWidget(2, 1, txtpwd);
+	    layout.setWidget(2, 2, lblErrPwd);
+	    
+	    layout.setWidget(3, 1, btnAuthentifier);
+
+	    // Wrap the content in a DecoratorPanel
+	    DecoratorPanel decPanel = new DecoratorPanel();
+	    decPanel.setWidget(layout);
+	   
+	    return decPanel;
+	  }
 
 	public HasValue<String> getTxtLogin() {
 		return txtLogin;

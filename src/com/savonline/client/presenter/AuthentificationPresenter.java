@@ -99,7 +99,6 @@ if(display.getTxtLogin().getValue().equals("")){
 	Window.alert("login ou mot de passe incorrect");
 }
 
-							
 								Cookies.setCookie("RoleName",jsonObject.get("role").isString().stringValue());
 								Cookies.setCookie("ID_employe",jsonObject.get("id_employe").isString().stringValue());
 								eventBus.fireEvent(new AuthentifEvent());	
