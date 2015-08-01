@@ -55,8 +55,6 @@ else{
 		presenter.go(left,container);
 	}
 	
-
-
 	private void bind() {
 		History.addValueChangeHandler(this);
 

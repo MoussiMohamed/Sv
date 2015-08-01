@@ -17,8 +17,9 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.savonline.client.presenter.AuthentificationPresenter;
 
-public class AuthentificationView extends Composite implements AuthentificationPresenter.Display{
 
+public class AuthentificationView extends Composite implements AuthentificationPresenter.Display{
+	 
 	
 	final private FlexTable flexAuthent;
 	final private TextBox txtLogin;
@@ -28,6 +29,8 @@ public class AuthentificationView extends Composite implements AuthentificationP
 	final private CheckBox chBoxOption;
 	
 	public AuthentificationView(){
+		
+  
 		lblErrLogin=new Label();
 		lblErrLogin.setStyleName("lblErrorConnexion");
 		lblErrPwd=new Label();
@@ -35,15 +38,15 @@ public class AuthentificationView extends Composite implements AuthentificationP
 		chBoxOption=new CheckBox();
 		chBoxOption.setHTML("Rester connecte");
 		flexAuthent=new FlexTable();
-//		flexAuthent.setStyleName("positionAuthentification");
+		flexAuthent.setStyleName("positionAuthentification");
 		txtLogin=new TextBox();
 		txtLogin.setFocus(true);
 		txtpwd=new PasswordTextBox();
 		btnAuthentifier=new Button("Connexion");
 
 //		btnAuthentifier.setStyleName("btnConnexion");
-//		initWidget(authentification());
 		initWidget(onInitialize());
+		
 	}
 	
 	public Widget authentification(){
@@ -56,7 +59,6 @@ public class AuthentificationView extends Composite implements AuthentificationP
 		cellFormater.setHorizontalAlignment(4, 0, HasHorizontalAlignment.ALIGN_CENTER);
 		flexAuthent.setHTML(0, 0, "Merci de vous identifier pour acceder a l'application");
 		flexAuthent.setCellPadding(10);
-//		flexAuthent.setCellSpacing(10);
 		flexAuthent.setHTML(1, 0, "Login : ");
 		flexAuthent.setWidget(1, 1, txtLogin);
 		flexAuthent.setWidget(1, 2, lblErrLogin);
@@ -74,7 +76,7 @@ public class AuthentificationView extends Composite implements AuthentificationP
 	
 	
 	public Widget onInitialize() {
-	    // Create a table to layout the form options
+//	    // Create a table to layout the form options
 	    FlexTable layout = new FlexTable();
 	    layout.setCellSpacing(6);
 	    FlexCellFormatter cellFormatter = layout.getFlexCellFormatter();
@@ -98,7 +100,7 @@ public class AuthentificationView extends Composite implements AuthentificationP
 	    // Wrap the content in a DecoratorPanel
 	    DecoratorPanel decPanel = new DecoratorPanel();
 	    decPanel.setWidget(layout);
-	   
+//	   
 	    return decPanel;
 	  }
 

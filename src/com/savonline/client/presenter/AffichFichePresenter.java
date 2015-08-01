@@ -4,6 +4,8 @@ package com.savonline.client.presenter;
 //import com.google.gwt.event.dom.client.ClickHandler;
 //import com.google.gwt.event.dom.client.HasClickHandlers;
 
+import java.util.Date;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.HasClickHandlers;
@@ -24,20 +26,28 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 import com.savonline.client.event.EditFicheEvent;
+import com.smartgwt.client.util.SC;
+import com.smartgwt.client.widgets.grid.ListGrid;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.widgets.grid.events.CellClickEvent;
+import com.smartgwt.client.widgets.grid.events.CellClickHandler;
 
 
 public class AffichFichePresenter implements Presenter {
 	public static interface Display{
 		Widget asWidget();
-		HasClickHandlers getList();
-		HasClickHandlers getListView();
-		JSONArray getSelectedRows();
-		String getClickedRow(ClickEvent event);
-		String getTypeElement(ClickEvent event);
-		void setLblResultInsert(String resultat);
-		HasClickHandlers getBtnAffiche();
+		
+		ListGrid getMainListGrid();
+//		HasClickHandlers getList();
+//		HasClickHandlers getListView();
+//		JSONArray getSelectedRows();
+//		String getClickedRow(/*ClickEvent event*/);
+//		String getTypeElement(ClickEvent event);
+//		void setLblResultInsert(String resultat);
+//		HasClickHandlers getBtnAffiche();
 
 		void setDataFiche(JSONArray data);
+
 
 	}
 	private final HandlerManager eventBus;
@@ -64,7 +74,7 @@ public class AffichFichePresenter implements Presenter {
 		
 
 	}
-
+	
 	public void bind(){
 		try {	
 
@@ -108,14 +118,15 @@ public class AffichFichePresenter implements Presenter {
 
 
 					display.setDataFiche(jsonArray);
+					
 
 				}
 
 
 				@Override
 				public void onError(Request request, Throwable exception) {
-					display.setLblResultInsert("Error with HTTP code :"+ exception.toString());
-
+//					display.setLblResultInsert("Error with HTTP code :"+ exception.toString());
+Window.alert("Error with HTTP code :"+ exception.toString());
 				}
 				
 				
@@ -133,26 +144,52 @@ public class AffichFichePresenter implements Presenter {
 
 	}
 	
-
-	
-public void EditFiche(){
-	
-		display.getList().addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				
-				eventBus.fireEvent(new EditFicheEvent(display.getClickedRow(event),display.getTypeElement(event)));
-				
-	}
-	
-		});
-
+String selectedItem;
+public void t(){
+	display.getMainListGrid().addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
+		
+		@Override
+		public void onClick(com.smartgwt.client.widgets.events.ClickEvent event) {
+			
+			selectedItem=display.getMainListGrid().getSelectedRecord().getAttribute("idFiche");
+			eventBus.fireEvent(new EditFicheEvent(selectedItem,""));
+		}
+	});
 }
+//public void EditFiche(){
+//		int selectedRow = -1;
+//		Element selectedElement = null;
+//		HTMLTable.Cell cell = fiches.getCellForEvent(event);
+//
+//		if (cell != null) {
+//			// Suppress clicks if the user is actually selecting the 
+//			//  check box
+//			//
+//			if (cell.getCellIndex() > 0) {
+//				selectedRow = cell.getRowIndex();
+//				
+//				selectedItem=fiches.getWidget(selectedRow, 0).getElement().getFirstChild().getNodeValue();
+//			}
+//		}
 
+		
+	
+	
+//		display.getList().addClickHandler(new ClickHandler() {
+//			public void onClick(ClickEvent event) {
+//				
+//				eventBus.fireEvent(new EditFicheEvent(display.getClickedRow(),display.getTypeElement(event)));
+//		eventBus.fireEvent(new EditFicheEvent(selectedItem,null));
+//	}
+//		});
+//}
 
 public void go(HasWidgets left, HasWidgets container) {
 	
 	bind();
-	EditFiche();
+//	display.getClickedRow();
+//	EditFiche();
+	t();
 	//left.add(display.asWidget());
 	container.clear();
 	container.add(display.asWidget());

@@ -9,5 +9,7 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="E:/smartGWT/smartgwt-4.0/smartgwt.jar"/>
+	<classpathentry kind="lib" path="E:/smartGWT/smartgwt-4.0/smartgwt-skins.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
