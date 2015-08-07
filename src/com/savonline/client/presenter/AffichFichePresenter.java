@@ -83,7 +83,6 @@ public class AffichFichePresenter implements Presenter {
 			String role = Cookies.getCookie("RoleName");
 			String ID_employe=Cookies.getCookie("ID_employe");
 			if(role.equalsIgnoreCase("Technicien")){
-				
 			
 //			jsonObj.put("role", new JSONString(role));
 			jsonObj.put("id_employe", new JSONString(ID_employe));
@@ -111,15 +110,11 @@ public class AffichFichePresenter implements Presenter {
 						Window.alert("Error parsing the JSON");
 					}
 
-
 					if ((jsonArray = jsonValue.isArray()) == null) {
 						Window.alert("Error parsing the JSON");
 					}
 
-
 					display.setDataFiche(jsonArray);
-					
-
 				}
 
 
@@ -134,14 +129,11 @@ Window.alert("Error with HTTP code :"+ exception.toString());
 
 		}
 
-
 		catch (RequestException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		//				eventBus.fireEvent(new AddFicheMaterielEvent());
-
-
 	}
 	
 String selectedItem;

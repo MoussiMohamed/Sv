@@ -5,6 +5,7 @@ import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.http.client.RequestBuilder;
+import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.savonline.client.event.*;
@@ -70,7 +71,13 @@ else{
 				// doAddNewContact();
 			}
 		}); 
-
+		eventBus.addHandler(VerifGarantieFicheEvent.TYPE,
+				new VerifGarantieFicheEventHandler() {
+			public void onVerifGarantieMateriel(VerifGarantieFicheEvent event) {
+				
+			}
+		}); 
+		
 		eventBus.addHandler(EditFicheEvent.TYPE,
 				new EditFicheEventHandler() {
 			public void onEditFiche(EditFicheEvent event) {
@@ -181,6 +188,7 @@ else{
 		this.container = container;
 
 		if ("".equals(History.getToken())) {
+			
 			History.newItem("authentif");
 		}
 		

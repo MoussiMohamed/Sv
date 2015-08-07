@@ -148,7 +148,7 @@ public class MenuTechnicienView extends Composite implements MenuTechnicienPrese
 	private Widget createFicheItem(Images images) {
 		fichePanel = new Tree(images);
 
-		fichePanelRoot = fichePanel.addItem("Gerer Fiche");
+		fichePanelRoot = fichePanel.addTextItem("Gerer Fiche");
 		String[] mailFolders = {"Ajout Fiche","Modifier Fiche","Consulter Fiche", "Rechercher Fiche","Assigner Fiche"};
 		addItem(fichePanelRoot,/* images.inbox(),*/ mailFolders[0]);
 		addItem(fichePanelRoot,/* images.drafts(),*/ mailFolders[1]);
@@ -190,7 +190,7 @@ public class MenuTechnicienView extends Composite implements MenuTechnicienPrese
 			private Widget createItemMessage(Images images) {
 				PanelMessage = new Tree(images);
 
-				PanelRootMessage = PanelMessage.addItem("Statistique");
+				PanelRootMessage = PanelMessage.addTextItem("Statistique");
 				String[] mailFolders = {"Nouveau Message","Boite de reception","Messages envoyes","Brouillons"};
 				addItemMessage(PanelRootMessage,/* images.inbox(),*/ mailFolders[0]);
 				addItemMessage(PanelRootMessage, /*images.drafts(), */mailFolders[1]);

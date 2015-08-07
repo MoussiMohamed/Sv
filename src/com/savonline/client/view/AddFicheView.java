@@ -23,7 +23,7 @@ import com.savonline.client.presenter.AddFichePresenter;
 public class AddFicheView extends Composite implements AddFichePresenter.Display{
 	
 
-	private  Button btnAjouter,btnAnnuler;
+	private  Button btnAjouter,btnAnnuler,btnCheckGarantee;
 	 private  FlexTable flexTableContainerAll;
 	 private  TextBox txtNom,txtPrenom,txtAdresse,txtNumTelPort,txtNumTelFix,txtEmail,txtMotPasse;
 	 private Label lnom,lprenom,ladresse,lnumTelPort,lnumTelFix,lemail,Lpassword,lmodele,lmarque,lnumSerie,lstatut,lcommentaire,ldescriptionPanne,laccessoire,lremarque,letat,lObservation;
@@ -125,6 +125,7 @@ public class AddFicheView extends Composite implements AddFichePresenter.Display
 		flexTableContainerAll.setCellPadding(10);
 		btnAjouter=new Button("Ajouter");
 		btnAnnuler=new Button("Annuler");
+		btnCheckGarantee=new Button("Verifier");
 		flexTableAll=new FlexTable();
 		flexTableAll.setCellSpacing(6);
 	    FlexCellFormatter cellFormatter = flexTableAll.getFlexCellFormatter();
@@ -238,6 +239,7 @@ decPanelContainerAll.add(flexTableContainerAll);
 	    layout2.setHTML(3,0,"Numero de serie");
 	    layout2.setWidget(3, 1, txtNumeroSerie);
 	    layout2.setWidget(3, 2, lnumSerie);
+	    layout2.setWidget(3, 3, btnCheckGarantee);
 	    layout2.setHTML(4,0,"Garantie");
 	    layout2.setWidget(4, 1, lstGarantie);
 	    layout2.setWidget(4, 2, lstatut);
@@ -615,4 +617,11 @@ public HasValue<String> getSubitUnChoc() {
 public HasValue<String> getVisOuvert() {
 	return txtVisOuvert;
 }
+
+
+
+public HasClickHandlers getBtnCheckGarantee() {
+	return btnCheckGarantee;
+}
+
 }

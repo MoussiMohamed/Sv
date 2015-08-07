@@ -201,7 +201,7 @@ AssignerFiche=new Label("Assigner Fiche");
 	//create des items Fiche
 	private Widget createFicheItem(Images images) {
 		fichePanel = new Tree(images);
-		fichePanelRoot = fichePanel.addItem("Gerer Fiche");
+		fichePanelRoot = fichePanel.addTextItem("Gerer Fiche");
 		String[] mailFolders = {AjoutFiche.getText(),"Modifier Fiche","Consulter Fiche", "Rechercher Fiche",AssignerFiche.getText()};
 		addItem(fichePanelRoot,/* images.inbox(),*/ mailFolders[0]);
 		addItem(fichePanelRoot,/* images.drafts(),*/ mailFolders[1]);
@@ -217,7 +217,7 @@ AssignerFiche=new Label("Assigner Fiche");
 		  private Widget createItemTechnicien(Images images) {
 			    PanelTechnicien = new Tree(images);
 			    
-			    mailPanelRootTechnicien = PanelTechnicien.addItem("Gerer Technicien");
+			    mailPanelRootTechnicien = PanelTechnicien.addTextItem("Gerer Technicien");
 			    String[] mailFolders = {"Ajout Technicien","Modifier Technicien","Supprimer Technicien", "Consulter Technicien"};
 			    addItemTechnicien(mailPanelRootTechnicien,/* images.inbox(), */mailFolders[0]);
 			    addItemTechnicien(mailPanelRootTechnicien,/* images.drafts(), */mailFolders[1]);
@@ -282,7 +282,7 @@ AssignerFiche=new Label("Assigner Fiche");
 			private Widget createItemStatistique(Images images) {
 				PanelStatistique = new Tree(images);
 
-				PanelRootStatistique = PanelStatistique.addItem("Statistique");
+				PanelRootStatistique = PanelStatistique.addTextItem("Statistique");
 				String[] mailFolders = {"Client","Technicien","Intervention", "Materiel","Fournisseur"};
 				addItemStatistique(PanelRootStatistique, /*images.inbox(), */mailFolders[0]);
 				addItemStatistique(PanelRootStatistique, /*images.drafts(), */mailFolders[1]);
@@ -326,7 +326,7 @@ AssignerFiche=new Label("Assigner Fiche");
 			private Widget createItemMessage(Images images) {
 				PanelMessage = new Tree(images);
 
-				PanelRootMessage = PanelMessage.addItem("Statistique");
+				PanelRootMessage = PanelMessage.addTextItem("Statistique");
 				String[] mailFolders = {"Nouveau Message","Boite de reception","Messages envoyes","Brouillons"};
 				addItemMessage(PanelRootMessage,/* images.inbox(),*/ mailFolders[0]);
 				addItemMessage(PanelRootMessage, /*images.drafts(), */mailFolders[1]);
@@ -367,7 +367,7 @@ AssignerFiche=new Label("Assigner Fiche");
 			//create des items Role&Privilege
 			private Widget createItemRolePrivilege(Images images) {
 				RolePrivPanel = new Tree(images);
-				PanelRootRolePriv = RolePrivPanel.addItem("Parametre");
+				PanelRootRolePriv = RolePrivPanel.addTextItem("Parametre");
 				String[] mailFolders = {"Ajouter Privilege","Consulter Privilege","Supprimer Privilege"};
 				addItemRolePrivilege(PanelRootRolePriv,/* images.inbox(),*/ mailFolders[0]);
 				addItemRolePrivilege(PanelRootRolePriv,/* images.drafts(),*/ mailFolders[1]);

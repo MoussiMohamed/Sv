@@ -9,14 +9,23 @@ import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
+import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONString;
+import com.google.gwt.json.client.JSONValue;
+import com.google.gwt.user.client.Cookies;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 import com.savonline.client.event.AddFicheEvent;
+import com.savonline.client.event.VerifGarantieFicheEvent;
 
 public class AddFichePresenter implements Presenter {
+	JSONValue jsonValue;
+	JSONArray jsonArray;
+	JSONObject jsonObject;
 	public static interface Display{
 		Widget asWidget();
 		HasValue<String> getTxtNom();
@@ -32,6 +41,7 @@ public class AddFichePresenter implements Presenter {
 
 		HasClickHandlers getBtnAnnuler();
 		HasClickHandlers getBtnAddFicheRec();
+		HasClickHandlers getBtnCheckGarantee();
 //		HasValue<String> getTxtDateCreation();
 		HasValue<String> getTxtAriaDescriptionPanne();
 		HasValue<String> getTxtAriaCommEtatFiche();
@@ -60,6 +70,7 @@ public class AddFichePresenter implements Presenter {
 		void setLblResultInsert(String resultInsert);
 		
 	}
+	
 	private final HandlerManager eventBus;
 	private final Display display;
 	private final RequestBuilder requestBuidler;
@@ -67,7 +78,7 @@ public class AddFichePresenter implements Presenter {
 	 
 	  JSONObject jsonObj;
 	  
-	
+	  
 	public AddFichePresenter(HandlerManager eventBus,RequestBuilder requestBuidler,Display display){
 		this.eventBus=eventBus;
 		this.requestBuidler = requestBuidler;
@@ -192,7 +203,58 @@ public class AddFichePresenter implements Presenter {
 					}
 			}
 		});
-		
+		display.getBtnCheckGarantee().addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				if (display.getTxtNumeroSerie().getValue().equalsIgnoreCase("")){
+					display.setLnumSerie(" *");
+				}else{
+					try {
+						jsonObj.put("Action", new JSONString("checkGarantee"));
+		    			jsonObj.put("numSerie", new JSONString(display.getTxtNumeroSerie().getValue()));
+		    			Cookies.setCookie("numSerie",display.getTxtNumeroSerie().getValue());
+		    			requestBuidler.setHeader(ct, ct2);
+		    			requestBuidler.sendRequest("jsonObj="+jsonObj.toString(), new RequestCallback() {
+		    			
+		    				@Override
+		    				public void onResponseReceived(Request request, Response response) {
+		    					
+		    					jsonValue = JSONParser.parseStrict(response.getText());
+		    					if ((jsonObject = jsonValue.isObject()) == null) {
+		    						Window.alert("Error parsing the JSON");
+		    						// Possibilites: error during download,
+		    						// someone trying to break the application, etc.
+		    					}
+
+		    					jsonValue = jsonObject.get("d"); // Actually, this needs
+		    					// a null check too
+		    					if ((jsonArray = jsonValue.isArray()) == null) {
+		    						Window.alert("Error parsing the JSON");
+		    					}
+
+		    					if ((jsonArray = jsonValue.isArray()) == null) {
+		    						Window.alert("Error parsing the JSON");
+		    					}
+
+		    					Window.alert(jsonArray.toString());
+		    						}
+		    				
+		    				@Override
+		    				public void onError(Request request, Throwable exception) {
+		    					Window.alert("Error with HTTP code :"+ exception.toString());
+		    					
+		    				}
+		    			
+		    			});
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					eventBus.fireEvent(new VerifGarantieFicheEvent());
+				}
+				
+			}
+		});
 	
 		display.getBtnAnnuler().addClickHandler(new ClickHandler() {
 			

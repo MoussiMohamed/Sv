@@ -59,7 +59,8 @@ public class AuthentificationPresenter implements Presenter{
 			
 			@Override
 			public void onClick(ClickEvent event) {
-				try {	
+				try {
+					
 if(display.getTxtLogin().getValue().equals("")){
 //	Window.alert("champs vide");
 	display.setLblErrLogin("champs vide");
