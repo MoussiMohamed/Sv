@@ -236,9 +236,10 @@ public class AddFichePresenter implements Presenter {
 		    					if ((jsonArray = jsonValue.isArray()) == null) {
 		    						Window.alert("Error parsing the JSON");
 		    					}
-
+		    					
 		    					Window.alert(jsonArray.toString());
-		    						}
+		    					Cookies.removeCookie("numSerie");	
+		    				}
 		    				
 		    				@Override
 		    				public void onError(Request request, Throwable exception) {
