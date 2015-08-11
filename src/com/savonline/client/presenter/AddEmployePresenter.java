@@ -137,7 +137,7 @@ public class AddEmployePresenter implements Presenter {
 		});
 	 }
 
-		public void go(HasWidgets left, HasWidgets container) {
+		public void go(HasWidgets top, HasWidgets left, HasWidgets container) {
 			bind();
 			//left.add(display.asWidget());
 			container.clear();

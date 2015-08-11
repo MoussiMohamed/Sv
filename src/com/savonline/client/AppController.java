@@ -20,6 +20,7 @@ import com.savonline.client.presenter.EditFichePresenter;
 import com.savonline.client.presenter.MenuPresenter;
 import com.savonline.client.presenter.Presenter;
 import com.savonline.client.presenter.RolesPresenter;
+import com.savonline.client.presenter.TopMenuPresenter;
 import com.savonline.client.view.AddEmployeView;
 import com.savonline.client.view.AddFicheView;
 import com.savonline.client.view.AddPrivilegeView;
@@ -30,11 +31,12 @@ import com.savonline.client.view.DisplayEmployeView;
 import com.savonline.client.view.EditFicheView;
 import com.savonline.client.view.MenuView;
 import com.savonline.client.view.RolesView;
+import com.savonline.client.view.TopMenuView;
 public class AppController implements Presenter, ValueChangeHandler<String> {
 	private final HandlerManager eventBus;
 	private final RequestBuilder requestBuilder;
 
-
+	private HasWidgets top;
 	private HasWidgets left;
 	private HasWidgets container;
 
@@ -53,7 +55,7 @@ else{
 	History.newItem("detailFiche", false);
 }
 		Presenter presenter = new EditFichePresenter(eventBus,requestBuilder, new EditFicheView(), id, typeElement);
-		presenter.go(left,container);
+		presenter.go(top,left,container);
 	}
 	
 	private void bind() {
@@ -183,7 +185,8 @@ else{
 	    History.newItem("hello");
 	  }*/
 
-	public void go(final HasWidgets left, final HasWidgets container ) {
+	public void go(final HasWidgets top, final HasWidgets left, final HasWidgets container ) {
+		this.top = top;
 		this.left = left;
 		this.container = container;
 
@@ -202,10 +205,12 @@ else{
 		String token = event.getValue();
 
 		if (token != null) {
+			
 			Presenter presenter = null;
 			Presenter presenterLeft = null;
-			presenterLeft = new MenuPresenter( eventBus,requestBuilder, new MenuView());
-
+			Presenter presenterTop = null;
+			presenterLeft = new MenuPresenter( eventBus, requestBuilder, new MenuView());
+			presenterTop = new TopMenuPresenter(eventBus, requestBuilder, new TopMenuView());
 			if (token.equals("authentif")) {				
 				presenter = new AuthentificationPresenter(eventBus, requestBuilder, new AuthentificationView());
 
@@ -253,8 +258,9 @@ else{
 
 
 			if (presenter != null) {
-				presenterLeft.go(left,container);
-				presenter.go(left,container);
+				presenterTop.go(top,left,container);
+				presenterLeft.go(top,left,container);
+				presenter.go(top,left,container);
 
 			}
 		}

@@ -134,7 +134,7 @@ public class DevisPresenter implements Presenter {
 	}
 
 
-	public void go(HasWidgets left, HasWidgets container) {
+	public void go(HasWidgets top, HasWidgets left, HasWidgets container) {
 
 		bind();
 		container.clear();

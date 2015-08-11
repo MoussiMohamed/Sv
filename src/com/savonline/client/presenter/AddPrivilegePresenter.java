@@ -89,7 +89,7 @@ public class AddPrivilegePresenter implements Presenter{
 	}
 	
 	@Override
-	public void go(HasWidgets left, HasWidgets container) {
+	public void go(HasWidgets top, HasWidgets left, HasWidgets container) {
 		bind();
 		container.clear();
 		container.add(display.asWidget());

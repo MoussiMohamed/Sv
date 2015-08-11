@@ -132,7 +132,8 @@ public class AddFicheView extends Composite implements AddFichePresenter.Display
 	    
 	    
 	    // Add a title to the form
-	    flexTableAll.setHTML(0, 0, "<b>Information de fiche de reception de materiel<b>");
+	    flexTableAll.setHTML(0, 0, "<b>Fiche de reception<b>");
+	    
 	    cellFormatter.setColSpan(0, 0, 2);
 	    cellFormatter.setHorizontalAlignment(
 	        0, 0, HasHorizontalAlignment.ALIGN_CENTER);
@@ -159,7 +160,7 @@ flexTableContainerAll.setCellSpacing(10);
 cellFormatterContainerAll.setHorizontalAlignment(0, 0, HasAlignment.ALIGN_CENTER);
 flexTableContainerAll.setWidget(0, 0, flexTableAll);
 DecoratorPanel decPanelContainerAll =new DecoratorPanel();
-decPanelContainerAll.setPixelSize(1023, 590);
+decPanelContainerAll.setPixelSize(1145, 600);
 decPanelContainerAll.add(flexTableContainerAll);
 
 			initWidget(decPanelContainerAll);

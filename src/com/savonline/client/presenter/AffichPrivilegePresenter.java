@@ -139,7 +139,7 @@ display.getList().addClickHandler(new ClickHandler() {
 	}
 });
  }
-public void go(HasWidgets left, HasWidgets container) {
+public void go(HasWidgets top, HasWidgets left, HasWidgets container) {
 	bind();
 	DeletePriv();
 	container.clear();

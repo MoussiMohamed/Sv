@@ -16,15 +16,16 @@ public class SavOnline implements EntryPoint {
 	
 		if(!(Cookies.getCookie("numSerie") == null)){
 			url="http://eventek-tn.com/test/E-adv/file-uploading/view.php";	
+			Cookies.removeCookie("numSerie");
 		}else{
 			url="http://127.0.0.1:8881/savOnlineToutBureau/src/com/savonline/server/dispatcher.php";
 		}
 		Window.alert(url);
 		HandlerManager eventBus = new HandlerManager(null);
 		RequestBuilder requesBuilder = new RequestBuilder(RequestBuilder.POST,URL.encode(url));
-
+		
 		AppController appViewer = new AppController(eventBus,requesBuilder);
-		appViewer.go(RootPanel.get("leftPanel"),RootPanel.get("centralPanel"));
+		appViewer.go(RootPanel.get("topPanel"),RootPanel.get("leftPanel"),RootPanel.get("centralPanel"));
 	}
 	}
 

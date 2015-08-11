@@ -130,7 +130,7 @@ public class PrivilegesPresenter implements Presenter {
 	    });
 	  }*/
 @Override
-public void go(HasWidgets left, HasWidgets container) {
+public void go(HasWidgets top, HasWidgets left, HasWidgets container) {
 	// TODO Auto-generated method stub
 	
 }

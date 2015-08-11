@@ -176,7 +176,7 @@ public void t(){
 //		});
 //}
 
-public void go(HasWidgets left, HasWidgets container) {
+public void go(HasWidgets top, HasWidgets left, HasWidgets container) {
 	
 	bind();
 //	display.getClickedRow();

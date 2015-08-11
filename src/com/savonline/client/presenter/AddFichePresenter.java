@@ -238,7 +238,7 @@ public class AddFichePresenter implements Presenter {
 		    					}
 		    					
 		    					Window.alert(jsonArray.toString());
-		    					Cookies.removeCookie("numSerie");	
+		    						
 		    				}
 		    				
 		    				@Override
@@ -292,7 +292,7 @@ public class AddFichePresenter implements Presenter {
 		});
 	}
 	
-	public void go(HasWidgets left, HasWidgets container) {
+	public void go(HasWidgets top, HasWidgets left, HasWidgets container) {
 		bind();
 		//left.add(display.asWidget());
 		container.clear();

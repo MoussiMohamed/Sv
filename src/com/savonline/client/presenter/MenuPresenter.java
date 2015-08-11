@@ -51,7 +51,7 @@ public void bind() {
 
 
 @Override
-public void go(final HasWidgets left, final HasWidgets container) {
+public void go(final HasWidgets top, final HasWidgets left, final HasWidgets container) {
 //	bind();
 	left.clear();
 	left.add(display.asWidget());

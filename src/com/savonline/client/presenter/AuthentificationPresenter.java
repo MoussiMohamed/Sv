@@ -128,8 +128,9 @@ if(display.getTxtLogin().getValue().equals("")){
 	  }
 	  
 	@Override
-	public void go(HasWidgets left, HasWidgets container) {
+	public void go(HasWidgets top,HasWidgets left, HasWidgets container) {
 		bind();
+		top.clear();
 		left.clear();
 		container.clear();
 		container.add(display.asWidget());

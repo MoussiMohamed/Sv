@@ -90,7 +90,7 @@ public class PrivilegesPresenter2 implements Presenter {
     container.add(display.asWidget());
   }
 @Override
-public void go(HasWidgets left, HasWidgets container) {
+public void go(HasWidgets top, HasWidgets left, HasWidgets container) {
 	// TODO Auto-generated method stub
 	
 }
