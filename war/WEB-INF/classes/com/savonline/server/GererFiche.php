@@ -84,18 +84,33 @@ function AfficheTechnicien($db,$obj){
 	echo "{"."\"d\"".":".$jsonEncode."}";
 
 }
+function pwd_client_gen()
+{
+	// 8 characters: 7 lower-case alphabets and 1 digit
+	$character_set_array = array();
+	$character_set_array[] = array('count' => 4, 'characters' => 'abcdefghijklmnopqrstuvwxyz');
+	$character_set_array[] = array('count' => 1, 'characters' => '0123456789');
+	$temp_array = array();
+	foreach ($character_set_array as $character_set) {
+		for ($i = 0; $i < $character_set['count']; $i++) {
+			$temp_array[] = $character_set['characters'][rand(0, strlen($character_set['characters']) - 1)];
+		}
+	}
+	shuffle($temp_array);
+	return implode('', $temp_array);
+}
 
 	function Insert($obj,$db){
 		
 		
-		$date_attrib_etat_fiche="";//date serveur
+		$date_attrib_etat_fiche=date('Y-m-d G:i:s');//date serveur
 		$NomC=$obj->{'NomClient'};
 		$PrenomC=$obj->{'PrenomClient'};
 		$AdresseC=$obj->{'AdresseClient'};
 		$NumTelProtC=$obj->{'NumTelPortClient'};
 		$NumTelFixClient=$obj->{'NumTelFixClient'};
 		$EmailC=$obj->{'Email'};
-		$MotPasseC=$obj->{'MotPasse'};
+		$MotPasseC= pwd_client_gen();// $obj->{'MotPasse'};
 		$Modele=$obj->{'Modele'};
 		$Marque=$obj->{'Marque'};
 		$NumSerie=$obj->{'NumSerie'};
@@ -153,6 +168,33 @@ WHERE fiche.id_client = client.id_client
 AND materiel.id_materiel = fiche.id_materiel
 and attribution_etat_fiche.id_etat_fiche = etat_fiche.id_etat_fiche
 AND fiche.id_fiche ='$id_fiche'";
+
+	$reqExe=$db->rq($req);
+	$jsonEncode="";
+	$fiches;
+	while($fiches[]=$db->fetch($reqExe)){
+
+	}
+
+	$jsonEncode  = json_encode($fiches);
+
+	echo "{"."\"d\"".":".$jsonEncode."}";
+
+}
+
+function suiviFiche($obj,$db){
+
+	$id_client=$obj->{'idClient'};
+
+	$req="SELECT *
+	FROM client, materiel,attribution_etat_fiche, etat_fiche, fiche
+	LEFT JOIN attribution_devis_reparation ON attribution_devis_reparation.id_fiche = fiche.id_fiche
+	LEFT JOIN devis_reparation ON attribution_devis_reparation.id_devis_reparation = devis_reparation.id_devis_reparation
+	WHERE fiche.id_client = client.id_client
+	AND materiel.id_materiel = fiche.id_materiel
+	and attribution_etat_fiche.id_etat_fiche = etat_fiche.id_etat_fiche
+	and attribution_etat_fiche.id_fiche=fiche.id_fiche
+	AND client.id_client ='$id_client'";
 
 	$reqExe=$db->rq($req);
 	$jsonEncode="";
@@ -301,8 +343,11 @@ function updateDevis($db,$obj){
 }
 
 function authentif($db,$obj){
+	
 	$login=$obj->{'login'};
 	$password=$obj->{'pwd'};
+	$reqAccessClient="select * from client where client.email='$login'
+	and client.mot_passe='$password'";
 	$req="select * from employe emp, attribution_role att_rol,role r
 where att_rol.id_employe=emp.id_employe
 and att_rol.id_role=r.id_role
@@ -311,12 +356,26 @@ and emp.passwordEmp='$password'";
 	$res=$db->rq($req);
 	$jsonEncode="";
 	$fiches;
+	$resClient=$db->rq($reqAccessClient);
+	$num_resultsEmp = mysql_num_rows($res);
+	$num_resultsClient = mysql_num_rows($resClient);
+	if ($num_resultsClient > 0){
+	while($fiches[]=$db->fetch($resClient)){
+			
+		$jsonEncode  = json_encode($fiches);
+	
+		echo "{"."\"d\"".":".$jsonEncode."}";
+	}
+	}
+	else if ($num_resultsEmp > 0){
 		while($fiches[]=$db->fetch($res)){
 			
 			$jsonEncode  = json_encode($fiches);
 		
 		echo "{"."\"d\"".":".$jsonEncode."}";
 					}
+					
+	}
 	
 }
 

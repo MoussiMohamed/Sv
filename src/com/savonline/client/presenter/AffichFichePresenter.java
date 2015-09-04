@@ -21,7 +21,10 @@ import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONString;
 import com.google.gwt.json.client.JSONValue;
+import com.google.gwt.user.cellview.client.DataGrid;
+import com.google.gwt.user.cellview.client.ColumnSortEvent.ListHandler;
 import com.google.gwt.user.client.Cookies;
+import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
@@ -36,18 +39,14 @@ import com.smartgwt.client.widgets.grid.events.CellClickHandler;
 public class AffichFichePresenter implements Presenter {
 	public static interface Display{
 		Widget asWidget();
-		
-		ListGrid getMainListGrid();
-//		HasClickHandlers getList();
-//		HasClickHandlers getListView();
-//		JSONArray getSelectedRows();
-//		String getClickedRow(/*ClickEvent event*/);
-//		String getTypeElement(ClickEvent event);
-//		void setLblResultInsert(String resultat);
-//		HasClickHandlers getBtnAffiche();
+		HasClickHandlers getList();
+		HasClickHandlers getListView();
+		JSONArray getSelectedRows();
+		String getClickedRow(ClickEvent event);
+		String getTypeElement(ClickEvent event);
+		HasClickHandlers getBtnAffiche();
 
 		void setDataFiche(JSONArray data);
-
 
 	}
 	private final HandlerManager eventBus;
@@ -74,7 +73,7 @@ public class AffichFichePresenter implements Presenter {
 		
 
 	}
-	
+
 	public void bind(){
 		try {	
 
@@ -83,6 +82,7 @@ public class AffichFichePresenter implements Presenter {
 			String role = Cookies.getCookie("RoleName");
 			String ID_employe=Cookies.getCookie("ID_employe");
 			if(role.equalsIgnoreCase("Technicien")){
+				
 			
 //			jsonObj.put("role", new JSONString(role));
 			jsonObj.put("id_employe", new JSONString(ID_employe));
@@ -90,14 +90,16 @@ public class AffichFichePresenter implements Presenter {
 			requestBuilder.setHeader(ct, ct2);
 			requestBuilder.sendRequest("jsonObj="+jsonObj.toString(), new RequestCallback() {
 
-				@Override
+				
 				public void onResponseReceived(Request request, Response response) {
 
 					// parse the response text into JSON
 					//JSONValue jsonValue = JSONParser.parseLenient(response.getText());
 
 					jsonValue = JSONParser.parseStrict(response.getText());
-
+					
+						
+					
 					if ((jsonObject = jsonValue.isObject()) == null) {
 						Window.alert("Error parsing the JSON");
 						// Possibilites: error during download,
@@ -110,18 +112,21 @@ public class AffichFichePresenter implements Presenter {
 						Window.alert("Error parsing the JSON");
 					}
 
+
 					if ((jsonArray = jsonValue.isArray()) == null) {
 						Window.alert("Error parsing the JSON");
 					}
 
+
 					display.setDataFiche(jsonArray);
+
 				}
 
 
-				@Override
+				
 				public void onError(Request request, Throwable exception) {
-//					display.setLblResultInsert("Error with HTTP code :"+ exception.toString());
-Window.alert("Error with HTTP code :"+ exception.toString());
+					Window.alert("Error with HTTP code :"+ exception.toString());
+
 				}
 				
 				
@@ -129,63 +134,39 @@ Window.alert("Error with HTTP code :"+ exception.toString());
 
 		}
 
+
 		catch (RequestException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		//				eventBus.fireEvent(new AddFicheMaterielEvent());
+
+
 	}
 	
-String selectedItem;
-public void t(){
-	display.getMainListGrid().addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
-		
-		@Override
-		public void onClick(com.smartgwt.client.widgets.events.ClickEvent event) {
-			
-			selectedItem=display.getMainListGrid().getSelectedRecord().getAttribute("idFiche");
-			eventBus.fireEvent(new EditFicheEvent(selectedItem,""));
-		}
-	});
-}
-//public void EditFiche(){
-//		int selectedRow = -1;
-//		Element selectedElement = null;
-//		HTMLTable.Cell cell = fiches.getCellForEvent(event);
-//
-//		if (cell != null) {
-//			// Suppress clicks if the user is actually selecting the 
-//			//  check box
-//			//
-//			if (cell.getCellIndex() > 0) {
-//				selectedRow = cell.getRowIndex();
-//				
-//				selectedItem=fiches.getWidget(selectedRow, 0).getElement().getFirstChild().getNodeValue();
-//			}
-//		}
 
-		
 	
+public void EditFiche(){
 	
-//		display.getList().addClickHandler(new ClickHandler() {
-//			public void onClick(ClickEvent event) {
-//				
-//				eventBus.fireEvent(new EditFicheEvent(display.getClickedRow(),display.getTypeElement(event)));
-//		eventBus.fireEvent(new EditFicheEvent(selectedItem,null));
-//	}
-//		});
-//}
+		display.getList().addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				
+				eventBus.fireEvent(new EditFicheEvent(display.getClickedRow(event),display.getTypeElement(event)));
+				
+	}
+	
+		});
+
+}
+
 
 public void go(HasWidgets top, HasWidgets left, HasWidgets container) {
-	
 	bind();
-//	display.getClickedRow();
-//	EditFiche();
-	t();
+	EditFiche();
 	//left.add(display.asWidget());
 	container.clear();
 	container.add(display.asWidget());
-
+	
 }
 
 }

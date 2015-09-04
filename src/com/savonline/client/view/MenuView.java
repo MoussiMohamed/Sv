@@ -100,8 +100,8 @@ AssignerFiche=new Label("Assigner Fiche");
 		StatistiqueHeader = createHeaderStatistique("<b> Statistique</b>"/*, imgBtnEdit*/);
 		stackPanel.add(createItemStatistique(images), StatistiqueHeader, 4);
 		
-		Widget MessageHeader = createHeaderMessage("<b> Message SAV</b>"/*, imgBtnEdit*/);
-		stackPanel.add(createItemMessage(images), MessageHeader, 4);
+//		Widget MessageHeader = createHeaderMessage("<b> Message SAV</b>"/*, imgBtnEdit*/);
+//		stackPanel.add(createItemMessage(images), MessageHeader, 4);
 		
 		Widget RolePrivHeader= createHeaderWidgetRolePrivilege("<b> Parametre</b>");
 		stackPanel.add(createItemRolePrivilege(images), RolePrivHeader, 4);
@@ -140,16 +140,16 @@ AssignerFiche=new Label("Assigner Fiche");
 			}
 		});
 		
-		PanelMessage.addSelectionHandler(new SelectionHandler<TreeItem>() {
-
-			@Override
-			public void onSelection(SelectionEvent<TreeItem> event) {
-//				Window.alert(event.getSelectedItem().getText());
-				eventBus.fireEvent(new TreeItemMenuEvent(getItemSelectedMessage()));
-				
-
-			}
-		});
+//		PanelMessage.addSelectionHandler(new SelectionHandler<TreeItem>() {
+//
+//			@Override
+//			public void onSelection(SelectionEvent<TreeItem> event) {
+////				Window.alert(event.getSelectedItem().getText());
+//				eventBus.fireEvent(new TreeItemMenuEvent(getItemSelectedMessage()));
+//				
+//
+//			}
+//		});
 		
 		RolePrivPanel.addSelectionHandler(new SelectionHandler<TreeItem>() {
 

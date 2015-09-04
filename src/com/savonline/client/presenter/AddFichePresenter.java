@@ -119,9 +119,7 @@ public class AddFichePresenter implements Presenter {
 				else if(display.getTxtEmail().getValue().equalsIgnoreCase("")){
 						display.setLemail(" *");
 					}
-				else if(display.getTxtMotPasse().getValue().equalsIgnoreCase("")){
-						display.setLpassword(" *");
-					}
+				
 				else if(display.getTxtModele().getValue().equalsIgnoreCase("")){
 						display.setLmodele(" *");
 					}
@@ -150,7 +148,7 @@ public class AddFichePresenter implements Presenter {
 	    			jsonObj.put("NumTelPortClient", new JSONString(display.getTxtNumTelPort().getValue()));
 	    			jsonObj.put("NumTelFixClient", new JSONString(display.getTxtNumTelFix().getValue()));
 	    			jsonObj.put("Email", new JSONString(display.getTxtEmail().getValue()));
-	    			jsonObj.put("MotPasse", new JSONString(display.getTxtMotPasse().getValue()));
+	    			
 	    			jsonObj.put("Modele", new JSONString(display.getTxtModele().getValue()));
 	    			jsonObj.put("Marque", new JSONString(display.getTxtMarque().getValue()));
 	    			jsonObj.put("NumSerie", new JSONString(display.getTxtNumeroSerie().getValue()));
@@ -178,8 +176,7 @@ public class AddFichePresenter implements Presenter {
 	    				@Override
 	    				public void onResponseReceived(Request request, Response response) {
 	    					
-//	    					display.setLblResultInsert(response.getText());
-//	    				Window.alert(response.getText());
+	    					eventBus.fireEvent(new AddFicheEvent());
 	    						}
 	    				
 	    				@Override
@@ -199,7 +196,7 @@ public class AddFichePresenter implements Presenter {
 	    			e.printStackTrace();
 	    		}
 					
-				eventBus.fireEvent(new AddFicheEvent());
+				
 					}
 			}
 		});

@@ -43,6 +43,8 @@ $db=new DBConnection('localhost','root','','db_sav');
 		case "AffichePrivilege":     AffichePrivilege($db,$obj);break;
 		
 		case "DeletePrivilege":		deletePrivilege($db,$obj);break;
+		
+		case "SuiviFiche":					suiviFiche($db,$obj);break;
 	}
 	
 }

@@ -86,6 +86,7 @@ public class DevisView extends Composite implements DevisPresenter.Display{
 	    layoutDevis.setHTML(4, 0, "Commentaire");
 	    layoutDevis.setWidget(4, 1, txtAriaCommentaire);
 	    layoutDevis.setWidget(5, 0, btnValiderDevis);
+	    
 	    layoutDevis.setWidget(5, 1, btnAnnulerDevis);
 	    
 	    

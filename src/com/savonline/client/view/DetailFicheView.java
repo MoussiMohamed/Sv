@@ -403,6 +403,7 @@ public void setDataAffiche(JSONArray data){
 			getTxtEtatFiche().setValue(jsonObject.get("nom_etat").isString().stringValue());
 			getTxtAriaDescriptionPanne().setValue(jsonObject.get("description_panne").isString().stringValue());
 			getTxtDateCreation().setValue(jsonObject.get("date_creation_fiche").isString().stringValue());
+			txtDateCreation.setEnabled(false);
 			getTxtAriaCommEtatFiche().setValue(jsonObject.get("commentaire_etat").isString().stringValue());
 			
 		}

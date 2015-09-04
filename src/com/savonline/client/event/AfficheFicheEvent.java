@@ -1,9 +1,9 @@
 package com.savonline.client.event;
 
 import com.google.gwt.event.shared.*;
+import com.savonline.client.view.*;
 import com.savonline.client.presenter.*;
 import com.savonline.client.presenter.AffichFichePresenter.Display;
-import com.savonline.client.view.*;
 
 public class AfficheFicheEvent extends GwtEvent<AfficheFicheEventHandler> {
   public static Type<AfficheFicheEventHandler> TYPE = new Type<AfficheFicheEventHandler>();

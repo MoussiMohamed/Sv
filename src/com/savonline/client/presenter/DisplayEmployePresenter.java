@@ -65,7 +65,9 @@ public class DisplayEmployePresenter implements Presenter {
 
 				@Override
 				public void onResponseReceived(Request request, Response response) {
-					
+					if(response.getText().equalsIgnoreCase("")){
+						Window.alert("no content to display");
+					}else{
 					jsonValue = JSONParser.parseStrict(response.getText());
 
 					if ((jsonObject = jsonValue.isObject()) == null) {
@@ -89,7 +91,7 @@ public class DisplayEmployePresenter implements Presenter {
 					display.setDataEmpoye(jsonArray);
 
 				}
-
+				}
 
 				@Override
 				public void onError(Request request, Throwable exception) {

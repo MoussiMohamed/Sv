@@ -40,8 +40,10 @@ public class AuthentificationView extends Composite implements AuthentificationP
 		flexAuthent=new FlexTable();
 		flexAuthent.setStyleName("positionAuthentification");
 		txtLogin=new TextBox();
+		txtLogin.setValue("moussi.m@live.fr");
 		txtLogin.setFocus(true);
 		txtpwd=new PasswordTextBox();
+		txtpwd.setValue("med1200..");
 		btnAuthentifier=new Button("Connexion");
 
 //		btnAuthentifier.setStyleName("btnConnexion");

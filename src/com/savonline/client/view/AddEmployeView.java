@@ -29,7 +29,8 @@ public class AddEmployeView extends Composite implements AddEmployePresenter.Dis
 	public AbsolutePanel absolutePanel;
 	public final IntegerBox intNTelPort,intNTelFix;
 	public final DecoratorPanel decP;
-	public final TextBox txtNom,txtPrenom,txtAdresse,txtEmail,txtPwd;
+	public final TextBox txtNom,txtPrenom,txtAdresse,txtEmail;
+	public final PasswordTextBox txtPwd;
 	public final Button btnCancel,btnAdd;
 	public Label lblErrNom,lblErrPrenom,lblErrAdresse,lblErrNTelPort,lblErrNTelFix,lblErrEmail,lblErrPwd;
 	public AddEmployeView() {
@@ -37,19 +38,20 @@ public class AddEmployeView extends Composite implements AddEmployePresenter.Dis
 
 		absolutePanel = new AbsolutePanel();
 		absolutePanel.setSize("397px", "354px");
-		Label lblAddEmploye = new Label("Fiche de technicien");
+		Label lblAddEmploye = new Label("Ajouter un Technicien");
 		lblAddEmploye.setStyleName("gwt-LabelAddEmloye");
-		absolutePanel.add(lblAddEmploye, 113, 10);
-		lblAddEmploye.setSize("163px", "22px");
+		absolutePanel.add(lblAddEmploye, 90, 8);
+		lblAddEmploye.setSize("100%", "20px");
 		
 		btnAdd = new Button("Add");
 		btnAdd.setText("Ajouter");
-		absolutePanel.add(btnAdd, 110, 320);
+		absolutePanel.add(btnAdd, 125, 320);
 		btnAdd.setSize("54px", "24px");
 		
 		btnCancel = new Button("Cancel");
 		btnCancel.setText("Annuler");
-		absolutePanel.add(btnCancel, 170, 320);
+		btnCancel.setSize("54px", "24px");
+		absolutePanel.add(btnCancel, 185, 320);
 		
 		FlexTable flexTable = new FlexTable();
 		
@@ -114,7 +116,7 @@ public class AddEmployeView extends Composite implements AddEmployePresenter.Dis
 		Label lblPassword = new Label("Password *");
 		flexTable.setWidget(6, 0, lblPassword);
 		
-		txtPwd = new TextBox();
+		txtPwd = new PasswordTextBox();
 		flexTable.setWidget(6, 1, txtPwd);
 		flexTable.getCellFormatter().setVerticalAlignment(1, 7, HasVerticalAlignment.ALIGN_BOTTOM);
 		flexTable.getCellFormatter().setHorizontalAlignment(1, 7, HasHorizontalAlignment.ALIGN_LEFT);
@@ -122,7 +124,9 @@ public class AddEmployeView extends Composite implements AddEmployePresenter.Dis
 		lblErrPwd = new Label("");
 		flexTable.setWidget(6, 2, lblErrPwd);
 		absolutePanel.add(flexTable, 22, 38);
-		initWidget(absolutePanel);
+		decP.add(absolutePanel);
+		
+		initWidget(decP);
 	}
 	
 	public Widget asWidget() {

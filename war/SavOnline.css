@@ -1,6 +1,11 @@
 
  .gwt-DecoratorPanel {
 }
+.deconnectBtn{
+	position: relative;
+	left: 230%;
+	
+}
 .gwt-DecoratorPanel .topCenter {
   border-top: 1px solid #bbb;
   line-height: 0px;

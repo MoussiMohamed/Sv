@@ -130,7 +130,7 @@ private FlexTable flexDevis;
 		
 		//creation de TextBox de date de creation de fiche
 		txtDateCreation=new TextBox();
-		
+		txtDateCreation.setEnabled(false);
 		//creattion de label de resultat d insertion
 		lblResultInsert=new Label();
 		
@@ -440,7 +440,7 @@ decPanelContainerAll.add(flexTableContainerAll);
 	    layout5.setHTML(4, 0, "Observation");
 	    layout5.setWidget(4, 1, txtAriaObservation);
 	    cellFormatter.setColSpan(5, 0, 3);
-	    layout5.setWidget(5, 0, btnCreateDevis);
+	    
 
 
 
@@ -474,6 +474,7 @@ decPanelContainerAll.add(flexTableContainerAll);
 	    flexDevis.setWidget(2, 1, txtDevis);
 	    flexDevis.setWidget(3, 0, lblTitreComment);
 	    flexDevis.setWidget(3, 1, txtCommentaireDevis);
+	    flexDevis.setWidget(4, 0, btnCreateDevis);
 	    Resources resources = GWT.create(Resources.class);
 	    Image imgBtnEdit = new Image(resources.EditIcon());
 		imgBtnEdit.setTitle("Editer");
@@ -550,7 +551,7 @@ public void setDataDevis(JSONArray jsonDataDevis){
 	
 	for (int i = 0 ; i < jsonDataDevis.size() ; i++){
 		jsonObjDevis=jsonDataDevis.get(i).isObject();
-		if(jsonObjDevis != null){
+		if (jsonObjDevis.get("id_devis_reparation")!=null ){
 			lblTitreIdDevis.setText("Id Devis");
 			lblTitreRapport.setText("Rapport");
 			lbltitreDevis.setText("Devis");
@@ -572,12 +573,12 @@ public void setBoitDevis(JSONArray jsonDataDevis){
 	
 	for (int i = 0 ; i < jsonDataDevis.size() ; i++){
 		jsonObjDevis=jsonDataDevis.get(i).isObject();
-		if(jsonObjDevis != null){
+		if (jsonObjDevis.get("id_devis_reparation")!=null ){
 			
 			txtAriaRapport.setText(jsonObjDevis.get("rapport_diagnostique").isString().stringValue());
 			txtAriaDevis.setText(jsonObjDevis.get("devis").isString().stringValue());
 			txtAriaCommentaire.setText(jsonObjDevis.get("Commentaire_Devis").isString().stringValue());
-			
+			btnCreateDevis.setVisible(false);
 		
 		}
 	}
@@ -703,6 +704,7 @@ public void setDataEdit(JSONArray data,String TypeElement){
 			setLstEtat(jsonObject.get("nom_etat").isString().stringValue());
 			getTxtAriaDescriptionPanne().setValue(jsonObject.get("description_panne").isString().stringValue());
 			getTxtDateCreation().setValue(jsonObject.get("date_creation_fiche").isString().stringValue());
+			
 			getTxtAriaCommEtatFiche().setValue(jsonObject.get("commentaire_etat").isString().stringValue());
 			getTxtAriaAccessoires().setValue(jsonObject.get("accessoire").isString().stringValue());
 			getTxtAriaRemarque().setValue(jsonObject.get("remarque").isString().stringValue());
@@ -710,7 +712,7 @@ public void setDataEdit(JSONArray data,String TypeElement){
 			getRaye().setValue(jsonObject.get("raye").isString().stringValue());
 			getSubitUnChoc().setValue(jsonObject.get("subit_choc").isString().stringValue());
 			getVisOuvert().setValue(jsonObject.get("vis_ouvert").isString().stringValue());
-			if (jsonObject.get("rapport_diagnostique")!=null ){
+			if (!jsonObject.get("rapport_diagnostique").isString().stringValue().equalsIgnoreCase("") ){
 		    		btnCreateDevis.setVisible(true);
 			lblTitreIdDevis.setText("Id Devis");
 			lblTitreRapport.setText("Rapport");
@@ -720,6 +722,7 @@ public void setDataEdit(JSONArray data,String TypeElement){
 			txtRapport.setText(jsonObject.get("rapport_diagnostique").isString().stringValue());
 			txtDevis.setText(jsonObject.get("devis").isString().stringValue());
 			txtCommentaireDevis.setText(jsonObject.get("Commentaire_Devis").isString().stringValue());
+			btnCreateDevis.setVisible(false);
 			}
 		}
 			
@@ -753,6 +756,7 @@ public void setDataEdit(JSONArray data,String TypeElement){
 		txtAriaCommEtatFiche.setEnabled(false);
 		btnValider.setVisible(false);
 		btnAnnuler.setVisible(false);
+		btnCreateDevis.setVisible(false);
 		
 		for (int i = 0 ; i < data.size() ; i++){
 			jsonObject =  data.get(i).isObject();
@@ -771,6 +775,7 @@ public void setDataEdit(JSONArray data,String TypeElement){
 				setLstEtat(jsonObject.get("nom_etat").isString().stringValue());
 				getTxtAriaDescriptionPanne().setValue(jsonObject.get("description_panne").isString().stringValue());
 				getTxtDateCreation().setValue(jsonObject.get("date_creation_fiche").isString().stringValue());
+				
 				getTxtAriaCommEtatFiche().setValue(jsonObject.get("commentaire_etat").isString().stringValue());
 				getTxtAriaAccessoires().setValue(jsonObject.get("accessoire").isString().stringValue());
 				getTxtAriaRemarque().setValue(jsonObject.get("remarque").isString().stringValue());
@@ -779,7 +784,7 @@ public void setDataEdit(JSONArray data,String TypeElement){
 				getSubitUnChoc().setValue(jsonObject.get("subit_choc").isString().stringValue());
 				getVisOuvert().setValue(jsonObject.get("vis_ouvert").isString().stringValue());
 				
-				    if (jsonObject.get("rapport_diagnostique")!=null ){
+				    if (!jsonObject.get("rapport_diagnostique").isString().stringValue().equalsIgnoreCase("") ){
 				    	btnCreateDevis.setVisible(true);
 				lblTitreIdDevis.setText("Id Devis");
 				lblTitreRapport.setText("Rapport");
@@ -789,6 +794,8 @@ public void setDataEdit(JSONArray data,String TypeElement){
 				txtRapport.setText(jsonObject.get("rapport_diagnostique").isString().stringValue());
 				txtDevis.setText(jsonObject.get("devis").isString().stringValue());
 				txtCommentaireDevis.setText(jsonObject.get("Commentaire_Devis").isString().stringValue());
+				    }else{
+				    	btnCreateDevis.setVisible(false);
 				    }
 				 
 		}

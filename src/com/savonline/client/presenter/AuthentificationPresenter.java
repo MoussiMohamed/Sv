@@ -21,6 +21,7 @@ import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.savonline.client.event.AuthentifEvent;
+import com.savonline.client.event.SuiviFicheEvent;
 
 public class AuthentificationPresenter implements Presenter{
 	public interface Display{
@@ -79,7 +80,9 @@ if(display.getTxtLogin().getValue().equals("")){
 
 						@Override
 						public void onResponseReceived(Request request, Response response) {
-						if(response.getText()!=null){
+						if(response.getText().equalsIgnoreCase("")){
+							Window.alert("login ou mot de passe incorrect");
+						}else{
 							jsonValue = JSONParser.parseStrict(response.getText());
 								
 						
@@ -96,25 +99,37 @@ if(display.getTxtLogin().getValue().equals("")){
 							}
 
 							jsonObject=jsonArray.get(0).isObject();
-							if(jsonObject.get("role").isString().stringValue().equalsIgnoreCase("")){
-	Window.alert("login ou mot de passe incorrect");
-}
-
+							if(jsonObject.get("email")!= null){
+								Cookies.setCookie("ID_employe",jsonObject.get("id_client").isString().stringValue());
+								Cookies.setCookie("Email",display.getTxtLogin().getValue());
+								eventBus.fireEvent(new SuiviFicheEvent());
+							}
+							if (jsonObject.get("emailEmp")!= null){
 								Cookies.setCookie("RoleName",jsonObject.get("role").isString().stringValue());
 								Cookies.setCookie("ID_employe",jsonObject.get("id_employe").isString().stringValue());
-								eventBus.fireEvent(new AuthentifEvent());	
+								Cookies.setCookie("Email",display.getTxtLogin().getValue());
+								eventBus.fireEvent(new AuthentifEvent());
+							}
+							
+//							if(jsonObject.get("role").isString().stringValue().equalsIgnoreCase("")){
+//	
+//}
+
+//								Cookies.setCookie("RoleName",jsonObject.get("role").isString().stringValue());
+//								Cookies.setCookie("ID_employe",jsonObject.get("id_client").isString().stringValue());
+//								Cookies.setCookie("Email",display.getTxtLogin().getValue());
+//								eventBus.fireEvent(new AuthentifEvent());	
 						}
+						
 						}
 					
 						@Override
 						public void onError(Request request, Throwable exception) {
 						
-
 						}
 					});
 
 				}
-
 
 				catch (RequestException e) {
 					// TODO Auto-generated catch block

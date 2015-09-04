@@ -20,6 +20,7 @@ import com.savonline.client.presenter.EditFichePresenter;
 import com.savonline.client.presenter.MenuPresenter;
 import com.savonline.client.presenter.Presenter;
 import com.savonline.client.presenter.RolesPresenter;
+import com.savonline.client.presenter.SuiviFichePresenter;
 import com.savonline.client.presenter.TopMenuPresenter;
 import com.savonline.client.view.AddEmployeView;
 import com.savonline.client.view.AddFicheView;
@@ -31,6 +32,7 @@ import com.savonline.client.view.DisplayEmployeView;
 import com.savonline.client.view.EditFicheView;
 import com.savonline.client.view.MenuView;
 import com.savonline.client.view.RolesView;
+import com.savonline.client.view.SuiviFicheView;
 import com.savonline.client.view.TopMenuView;
 public class AppController implements Presenter, ValueChangeHandler<String> {
 	private final HandlerManager eventBus;
@@ -153,7 +155,24 @@ else{
 				History.newItem("list");
 			}
 		});
-
+		
+		eventBus.addHandler(SuiviFicheEvent.TYPE,
+				new SuiviFicheEventHandler(){
+			public void onSuiviFiche(SuiviFicheEvent event) {
+				History.newItem("SuiviFiche");
+			}
+		});
+		
+		eventBus.addHandler(DeconnectEvent.TYPE,
+				new DeconnectEventHandler() {
+				
+					public void onDeconnect(DeconnectEvent event) {
+						History.newItem("authentif");
+					}
+		
+			
+		});
+		
 		eventBus.addHandler(AuthentifEvent.TYPE,
 				new AuthentifEventHandler() {
 			public void onAuthentif(AuthentifEvent event) {
@@ -218,9 +237,12 @@ else{
 			
 			else if (token.equals("list")) {
 				presenter = new AffichFichePresenter(eventBus, requestBuilder, new AfficheFicheView());
-
 			}
-
+			
+			else if (token.equals("SuiviFiche")) {
+				presenter = new SuiviFichePresenter(eventBus, requestBuilder, new SuiviFicheView());
+			}
+			
 			else if (token.equals("ViewPrivilege")) {
 				presenter = new AffichPrivilegePresenter(eventBus, requestBuilder, new AffichPrivilegeView());
 

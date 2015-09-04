@@ -103,8 +103,30 @@ public class AddEmployePresenter implements Presenter {
 			
 			@Override
 			public void onClick(ClickEvent event) {
-				VerifChamp();
+				
 				try{
+					if (display.getTxtNom().getValue().equalsIgnoreCase("")){
+						display.getlblErrNom().setText(" *");
+					}
+					else if(display.getTxtPrenom().getValue().equalsIgnoreCase("")){
+						display.getlblErrPrenom().setText(" *");
+					}
+					else if(display.getTxtAdresse().getValue().equalsIgnoreCase("")){
+						display.getlblErrAdresse().setText(" *");
+					}
+					else if(display.getIntNTelPort().getValue().equals(null)){
+						display.getlblErrNTelPort().setText(" *");
+					}
+					else if(display.getIntNTelFix().getValue().equals(null)){
+						display.getlblErrNTelFix().setText(" *");
+					}
+					else if(display.getTxtEmail().getValue().equalsIgnoreCase("")){
+						display.getlblErrEmail().setText(" *");
+					}
+					else if(display.getTxtPwd().getValue().equalsIgnoreCase("")){
+						display.getlblErrPwd().setText(" *");
+					}
+					else{
 					jsonObj.put("Action", new JSONString("AddEmploye"));
 					jsonObj.put("Nom", new JSONString(display.getTxtNom().getValue()));
 					jsonObj.put("Prenom", new JSONString(display.getTxtPrenom().getValue()));
@@ -119,7 +141,7 @@ public class AddEmployePresenter implements Presenter {
 						
 						@Override
 						public void onResponseReceived(Request request, Response response) {
-							
+							eventBus.fireEvent(new AddEmployeEvent());
 						}
 						
 						@Override
@@ -129,10 +151,11 @@ public class AddEmployePresenter implements Presenter {
 						}
 					});
 				}
+				}
 				catch(RequestException e){
 					e.printStackTrace();
 				}
-				eventBus.fireEvent(new AddEmployeEvent());
+				
 			}
 		});
 	 }

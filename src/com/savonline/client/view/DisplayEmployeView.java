@@ -43,7 +43,7 @@ private final FlexTable flexData;
 
 		JSONObject jsonObject = new JSONObject();
 		boolean colored = false;
-		for (int i = 1 ; i < data.size() ; i++){
+		for (int i = 0 ; i < data.size() ; i++){
 
 			jsonObject =  data.get(i).isObject();
 			Resources resources = GWT.create(Resources.class);
@@ -54,29 +54,30 @@ private final FlexTable flexData;
 			
 			imgEyes.setTitle("Consulter");
 			if(jsonObject != null){
-				flexData.setHTML(0, 0, "Id");
-				flexData.setHTML(0, 1, "Nom");
-				flexData.setHTML(0, 2, "Prenom");
-				flexData.setHTML(0, 3, "Adresse");
-				flexData.setHTML(0, 4, "N Tel-Portable");
-				flexData.setHTML(0, 5, "N Tel-Fix");
-				flexData.setHTML(0, 6, "Email");
-				flexData.setHTML(0, 7, "Mot de passe");
+				flexData.setHTML(0, 0, "<center><b>Id</b></center>");
+				flexData.setHTML(0, 1, "<center><b>Nom</b></center>");
+				flexData.setHTML(0, 2, "<center><b>Prenom</b></center>");
+				flexData.setHTML(0, 3, "<center><b>Adresse</b></center>");
+				flexData.setHTML(0, 4, "<center><b>N Tel-Portable</b></center>");
+				flexData.setHTML(0, 5, "<center><b>N Tel-Fix</b></center>");
+				flexData.setHTML(0, 6, "<center><b>Email</b></center>");
+				flexData.setHTML(0, 7, "<center><b>Mot de passe</b></center>");
+				flexData.setHTML(0, 8, "<center><b>Modifier</b></center>");
 			
-				flexData.setWidget(i, 0, new Label(jsonObject.get("id_employe").isString().stringValue()));
-				flexData.setWidget(i, 1, new Label(jsonObject.get("nom_Emp").isString().stringValue()));
-				flexData.setWidget(i, 2, new Label(jsonObject.get("prenom_Emp").isString().stringValue()));
-				flexData.setWidget(i, 3, new Label(jsonObject.get("adresse_Emp").isString().stringValue()));
-				flexData.setWidget(i, 4, new Label(jsonObject.get("numTelMobil").isString().stringValue()));
-				flexData.setWidget(i, 5, new Label(jsonObject.get("numTelFix").isString().stringValue()));
-				flexData.setWidget(i, 6, new Label(jsonObject.get("emailEmp").isString().stringValue()));
-				flexData.setWidget(i, 7, new Label(jsonObject.get("passwordEmp").isString().stringValue()));
+				flexData.setWidget(i+1, 0, new Label(jsonObject.get("id_employe").isString().stringValue()));
+				flexData.setWidget(i+1, 1, new Label(jsonObject.get("nom_Emp").isString().stringValue()));
+				flexData.setWidget(i+1, 2, new Label(jsonObject.get("prenom_Emp").isString().stringValue()));
+				flexData.setWidget(i+1, 3, new Label(jsonObject.get("adresse_Emp").isString().stringValue()));
+				flexData.setWidget(i+1, 4, new Label(jsonObject.get("numTelMobil").isString().stringValue()));
+				flexData.setWidget(i+1, 5, new Label(jsonObject.get("numTelFix").isString().stringValue()));
+				flexData.setWidget(i+1, 6, new Label(jsonObject.get("emailEmp").isString().stringValue()));
+				flexData.setWidget(i+1, 7, new Label(jsonObject.get("passwordEmp").isString().stringValue()));
 				
-				flexData.setWidget(i, 8, imgBtnEdit);
+				flexData.setWidget(i+1, 8, imgBtnEdit);
 
 				if(!colored){
-					for(int k=0;k<8;k++){
-						cellFormatterallflexData.setStyleName(i, k, "flexRow");
+					for(int k=0;k<=8;k++){
+						cellFormatterallflexData.setStyleName(i+1, k, "flexRow");
 					}
 					colored = true;
 				}else{

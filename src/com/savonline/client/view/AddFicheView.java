@@ -15,6 +15,7 @@ import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
@@ -25,7 +26,8 @@ public class AddFicheView extends Composite implements AddFichePresenter.Display
 
 	private  Button btnAjouter,btnAnnuler,btnCheckGarantee;
 	 private  FlexTable flexTableContainerAll;
-	 private  TextBox txtNom,txtPrenom,txtAdresse,txtNumTelPort,txtNumTelFix,txtEmail,txtMotPasse;
+	 private  TextBox txtNom,txtPrenom,txtAdresse,txtNumTelPort,txtNumTelFix,txtEmail;
+	 private PasswordTextBox txtMotPasse;
 	 private Label lnom,lprenom,ladresse,lnumTelPort,lnumTelFix,lemail,Lpassword,lmodele,lmarque,lnumSerie,lstatut,lcommentaire,ldescriptionPanne,laccessoire,lremarque,letat,lObservation;
 	
 
@@ -87,7 +89,7 @@ public class AddFicheView extends Composite implements AddFichePresenter.Display
 		txtNumTelPort=new TextBox();
 		txtNumTelFix=new TextBox();
 		txtEmail=new TextBox();
-		txtMotPasse=new TextBox();
+		txtMotPasse=new PasswordTextBox();
 		
 		//creation de TextBoxMateriel
 		txtModele=new TextBox();
@@ -179,7 +181,7 @@ decPanelContainerAll.add(flexTableContainerAll);
 	    FlexCellFormatter cellFormatter = layout.getFlexCellFormatter();
 
 	    // Add a title to the form
-	    layout.setHTML(0, 0, "Client");
+	    layout.setHTML(0, 0, "<b>Client</b>");
 	    cellFormatter.setColSpan(0, 0, 2);
 	    cellFormatter.setHorizontalAlignment(
 	        0, 0, HasHorizontalAlignment.ALIGN_CENTER);
@@ -203,9 +205,7 @@ decPanelContainerAll.add(flexTableContainerAll);
 	    layout.setHTML(6,0,"Email");
 	    layout.setWidget(6, 1, txtEmail);
 	    layout.setWidget(6, 2, lemail);
-	    layout.setHTML(7,0,"Mot de passe");
-	    layout.setWidget(7, 1,txtMotPasse);
-	    layout.setWidget(7, 2,Lpassword);
+	    
 	    
 
 	    // Wrap the content in a DecoratorPanel
@@ -225,7 +225,7 @@ decPanelContainerAll.add(flexTableContainerAll);
 	    FlexCellFormatter cellFormatter = layout2.getFlexCellFormatter();
 
 	    // Add a title to the form
-	    layout2.setHTML(0, 0, "Materiel");
+	    layout2.setHTML(0, 0, "<b>Materiel</b>");
 	    cellFormatter.setColSpan(0, 0, 2);
 	    cellFormatter.setHorizontalAlignment(
 	        0, 0, HasHorizontalAlignment.ALIGN_CENTER);
@@ -314,7 +314,7 @@ decPanelContainerAll.add(flexTableContainerAll);
 	    FlexCellFormatter cellFormatter = layout5.getFlexCellFormatter();
 
 	    // Add a title to the form
-	    layout5.setHTML(0, 0, "Fiche");
+	    layout5.setHTML(0, 0, "<b>Fiche</b>");
 	    cellFormatter.setColSpan(0, 0, 2);
 	    cellFormatter.setHorizontalAlignment(
 	        0, 0, HasHorizontalAlignment.ALIGN_CENTER);
@@ -348,7 +348,7 @@ decPanelContainerAll.add(flexTableContainerAll);
 	    FlexCellFormatter cellFormatter = layout6.getFlexCellFormatter();
 
 	    // Add a title to the form
-	    layout6.setHTML(0, 0, "Informations supplementaires");
+	    layout6.setHTML(0, 0, "<b>Informations supplementaires</b>");
 	    cellFormatter.setColSpan(0, 0, 2);
 	    cellFormatter.setHorizontalAlignment(
 	        0, 0, HasHorizontalAlignment.ALIGN_CENTER);
