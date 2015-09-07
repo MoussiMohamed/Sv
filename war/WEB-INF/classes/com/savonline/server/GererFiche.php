@@ -182,9 +182,10 @@ AND fiche.id_fiche ='$id_fiche'";
 
 }
 
-function suiviFiche($obj,$db){
+function suiviFiche($db,$obj){
 
 	$id_client=$obj->{'idClient'};
+	
 
 	$req="SELECT *
 	FROM client, materiel,attribution_etat_fiche, etat_fiche, fiche

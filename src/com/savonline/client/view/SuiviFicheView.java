@@ -106,15 +106,15 @@ private FlexTable flexDevis;
 		
 				//affichage de Devis
 				txtRapport=new TextArea();
-				txtRapport.setHeight("30px");
+				txtRapport.setHeight("40px");
 //				txtRapport.setPixelSize(270, 70);
 				txtRapport.setEnabled(false);
 				txtDevis=new TextArea();
-				txtDevis.setHeight("30px");
+				txtDevis.setHeight("40px");
 //				txtDevis.setPixelSize(270, 70);
 				txtDevis.setEnabled(false);
 				txtCommentaireDevis=new TextArea();
-				txtCommentaireDevis.setHeight("30px");
+				txtCommentaireDevis.setHeight("40px");
 //				txtCommentaireDevis.setPixelSize(270, 70);
 				txtCommentaireDevis.setEnabled(false);
 				lblTitreRapport=new Label();
@@ -123,9 +123,11 @@ private FlexTable flexDevis;
 				
 		//creation de textAriaDescriptionPanne
 		txtAriaDescriptionPanne=new TextArea();
-		txtAriaDescriptionPanne.setHeight("30px");
+		txtAriaDescriptionPanne.setHeight("40px");
+		txtAriaDescriptionPanne.setEnabled(false);
 		txtAriaCommEtatFiche=new TextArea();
-		txtAriaCommEtatFiche.setHeight("30px");
+		txtAriaCommEtatFiche.setHeight("40px");
+		txtAriaCommEtatFiche.setEnabled(false);
 		//txtAriaInformationComplementaire=new TextArea();
 		
 		//creation de TextBox de date de creation de fiche
@@ -148,8 +150,11 @@ private FlexTable flexDevis;
 		
 		//creation de TextBoxMateriel
 		txtModele=new TextBox();
+		txtModele.setEnabled(false);
 		txtMarque=new TextBox();
+		txtMarque.setEnabled(false);
 		txtNumeroSerie=new TextBox();
+		txtNumeroSerie.setEnabled(false);
 		txtRaye=new TextBox();
 		txtSubitUnChoc=new TextBox();
 		txtVisOuvert=new TextBox();
@@ -165,14 +170,17 @@ private FlexTable flexDevis;
 		lstGarantie.addItem("---");
 		lstGarantie.addItem("Oui");
 		lstGarantie.addItem("Non");
+		lstGarantie.setEnabled(false);
 		lstEtatFiche=new ListBox();
-		lstEtatFiche.addItem("en attente de traitement");
-		lstEtatFiche.addItem("Ouvert");
-		lstEtatFiche.addItem("En cours de verification");
-		lstEtatFiche.addItem("En attante de confirmation de devis");
-		lstEtatFiche.addItem("En cours de reparaion");
-		lstEtatFiche.addItem("reparation termine");
-		lstEtatFiche.addItem("Ferme");
+		lstEtatFiche.setStyleName("colorListEtatFiche");
+		lstEtatFiche.addItem("Reception");
+		lstEtatFiche.addItem("En cours de diagnostique");
+		lstEtatFiche.addItem("Materiel chez le fournisseur");
+		lstEtatFiche.addItem("Sous devis");
+		lstEtatFiche.addItem("Reparation");
+		lstEtatFiche.addItem("Sortie");
+		lstEtatFiche.addItem("Preleve");
+		lstEtatFiche.setEnabled(false);
 		
 		lstTechnicien=new ListBox();
 		
@@ -189,7 +197,7 @@ private FlexTable flexDevis;
 	    
 	    
 	    // Add a title to the form
-	    flexTableAll.setHTML(0, 0, "<b>Information de fiche de reception de materiel<b>");
+	    flexTableAll.setHTML(0, 0, "<center><b>Suivi de fiche materiel<b></center>");
 	    cellFormatter.setColSpan(0, 0, 2);
 	    cellFormatter.setHorizontalAlignment(
 	        0, 0, HasHorizontalAlignment.ALIGN_CENTER);
@@ -202,13 +210,13 @@ private FlexTable flexDevis;
 	    
 	    
 
-flexTableAll.setWidget(1, 1, createMateriel());
+flexTableAll.setWidget(1, 0, createMateriel());
 
 flexTableAll.setWidget(2, 0, createFiche());
-flexTableAll.setWidget(2, 1, createAffichageDevis());
-
-flexTableAll.setWidget(3, 0, btnValider);
-flexTableAll.setWidget(3, 1, btnAnnuler);
+flexTableAll.setWidget(1, 1, createAffichageDevis());
+//
+//flexTableAll.setWidget(3, 0, btnValider);
+//flexTableAll.setWidget(3, 1, btnAnnuler);
 
 FlexCellFormatter cellFormatterContainerAll = flexTableContainerAll.getFlexCellFormatter();
 flexTableContainerAll.setCellSpacing(10);
@@ -271,7 +279,7 @@ decPanelContainerAll.add(flexTableContainerAll);
 	    FlexCellFormatter cellFormatter = layout2.getFlexCellFormatter();
 
 	    // Add a title to the form
-	    layout2.setHTML(0, 0, "Materiel");
+	    layout2.setHTML(0, 0, "<center><b>Materiel</b></center>");
 	    cellFormatter.setColSpan(0, 0, 2);
 	    cellFormatter.setHorizontalAlignment(
 	        0, 0, HasHorizontalAlignment.ALIGN_CENTER);
@@ -292,10 +300,7 @@ decPanelContainerAll.add(flexTableContainerAll);
 	    layout2.setHTML(5,0,"Description de panne");
 	    layout2.setWidget(5, 1, txtAriaDescriptionPanne);
 	    layout2.setWidget(5, 2, ldescriptionPanne);
-	    layout2.setHTML(6,0,"Accessoires");
-	    layout2.setWidget(6, 1, txtAriaAccessoires);
-	    layout2.setHTML(7,0,"Remarques");
-	    layout2.setWidget(7, 1, txtAriaRemarque);
+	    
 	    
 
 	    // Wrap the content in a DecoratorPanel
@@ -317,22 +322,20 @@ decPanelContainerAll.add(flexTableContainerAll);
 	    FlexCellFormatter cellFormatter = layout5.getFlexCellFormatter();
 
 	    // Add a title to the form
-	    layout5.setHTML(0, 0, "Fiche");
+	    layout5.setHTML(0, 0, "<center><b>Fiche</b></center>");
 	    cellFormatter.setColSpan(0, 0, 2);
 	    cellFormatter.setHorizontalAlignment(
 	        0, 0, HasHorizontalAlignment.ALIGN_CENTER);
 
 	    // Add some standard form options
-	    layout5.setHTML(1, 0, "Date de creation");
-	    layout5.setWidget(1, 1, txtDateCreation);
-	    layout5.setHTML(2, 0, "Etat de fiche");
-	    layout5.setWidget(2, 1, lstEtatFiche);
-	    layout5.setHTML(3, 0, "Commentaire");
-	    layout5.setWidget(3, 1, txtAriaCommEtatFiche);
-	    layout5.setWidget(3, 2, ldescriptionPanne);
-	    layout5.setHTML(4, 0, "Observation");
-	    layout5.setWidget(4, 1, txtAriaObservation);
-	    cellFormatter.setColSpan(5, 0, 3);
+	   
+	    layout5.setHTML(1, 0, "Etat de fiche");
+	    layout5.setWidget(1, 1, lstEtatFiche);
+	    layout5.setHTML(2, 0, "Commentaire");
+	    layout5.setWidget(2, 1, txtAriaCommEtatFiche);
+	    layout5.setWidget(2, 2, ldescriptionPanne);
+	    
+//	    cellFormatter.setColSpan(5, 0, 3);
 	    
 
 
@@ -347,11 +350,14 @@ decPanelContainerAll.add(flexTableContainerAll);
 	
 	public Widget createAffichageDevis(){
 		
-		
+		DecoratorPanel decDevis=new DecoratorPanel();
 		flexDevis.setCellSpacing(5);
 		
 		
 	    FlexCellFormatter cellFormatterDevis = flexDevis.getFlexCellFormatter();
+	    cellFormatterDevis.setColSpan(0, 0, 2);
+	    cellFormatterDevis.setHorizontalAlignment(
+	        0, 0, HasHorizontalAlignment.ALIGN_CENTER);
 	    cellFormatterDevis.setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_CENTER);
 	    cellFormatterDevis.setHorizontalAlignment(0, 1, HasHorizontalAlignment.ALIGN_CENTER);
 	    cellFormatterDevis.setHorizontalAlignment(0, 2, HasHorizontalAlignment.ALIGN_CENTER);
@@ -359,23 +365,24 @@ decPanelContainerAll.add(flexTableContainerAll);
 	    cellFormatterDevis.setHorizontalAlignment(1, 1, HasHorizontalAlignment.ALIGN_CENTER);
 	    cellFormatterDevis.setHorizontalAlignment(1, 2, HasHorizontalAlignment.ALIGN_CENTER);
 	    cellFormatterDevis.setHorizontalAlignment(4, 1, HasHorizontalAlignment.ALIGN_RIGHT);
-	    flexDevis.setWidget(0, 0, lblTitreIdDevis);
-	    flexDevis.setWidget(0, 1, lblIdDevis );
-	    flexDevis.setWidget(1, 0, lblTitreRapport);
-	    flexDevis.setWidget(1, 1, txtRapport);
-	    flexDevis.setWidget(2, 0, lbltitreDevis);
-	    flexDevis.setWidget(2, 1, txtDevis);
-	    flexDevis.setWidget(3, 0, lblTitreComment);
-	    flexDevis.setWidget(3, 1, txtCommentaireDevis);
-	    flexDevis.setWidget(4, 0, btnCreateDevis);
+	    flexDevis.setHTML(0, 0, "<center><b>Devis de reparation</b></center>");
+	    flexDevis.setHTML(1, 0, "ID:");
+	    flexDevis.setWidget(1, 1, lblIdDevis );
+	    flexDevis.setHTML(2, 0, "Rapport de diagnostique");
+	    flexDevis.setWidget(2, 1, txtRapport);
+	    flexDevis.setHTML(3, 0, "Devis de reparation");
+	    flexDevis.setWidget(3, 1, txtDevis);
+	    flexDevis.setHTML(4, 0, "Commentaire");
+	    flexDevis.setWidget(4, 1, txtCommentaireDevis);
+//	    flexDevis.setWidget(4, 0, btnCreateDevis);
 	    Resources resources = GWT.create(Resources.class);
 	    Image imgBtnEdit = new Image(resources.EditIcon());
 		imgBtnEdit.setTitle("Editer");
-	    flexDevis.setWidget(4, 1, imgBtnEdit);
+//	    flexDevis.setWidget(4, 1, imgBtnEdit);
+		decDevis.add(flexDevis);
 	    
 	    
-	    
-		return flexDevis;
+		return decDevis;
 	}
 	
 	
@@ -583,28 +590,28 @@ public void setSuiviData(JSONArray data){
 	for (int i = 0 ; i < data.size() ; i++){
 		jsonObject =  data.get(i).isObject();
 		if(jsonObject !=null){
-			getTxtNom().setValue(jsonObject.get("nom_Client").isString().stringValue());
-			getTxtPrenom().setValue(jsonObject.get("prenom_client").isString().stringValue());
-			getTxtAdresse().setValue(jsonObject.get("adresse").isString().stringValue());
-			getTxtNumTelPort().setValue(jsonObject.get("num_tel_port").isString().stringValue());
-			getTxtNumTelFix().setValue(jsonObject.get("num_tel_fix").isString().stringValue());
-			getTxtEmail().setValue(jsonObject.get("email").isString().stringValue());
-			getTxtMotPasse().setValue(jsonObject.get("mot_passe").isString().stringValue());
+//			getTxtNom().setValue(jsonObject.get("nom_Client").isString().stringValue());
+//			getTxtPrenom().setValue(jsonObject.get("prenom_client").isString().stringValue());
+//			getTxtAdresse().setValue(jsonObject.get("adresse").isString().stringValue());
+//			getTxtNumTelPort().setValue(jsonObject.get("num_tel_port").isString().stringValue());
+//			getTxtNumTelFix().setValue(jsonObject.get("num_tel_fix").isString().stringValue());
+//			getTxtEmail().setValue(jsonObject.get("email").isString().stringValue());
+//			getTxtMotPasse().setValue(jsonObject.get("mot_passe").isString().stringValue());
 			getTxtModele().setValue(jsonObject.get("modele").isString().stringValue());
 			getTxtMarque().setValue(jsonObject.get("marque").isString().stringValue());
 			getTxtNumeroSerie().setValue(jsonObject.get("numero_serie").isString().stringValue());
 			setLstGarantie(jsonObject.get("statut_materiel").isString().stringValue());
 			setLstEtat(jsonObject.get("nom_etat").isString().stringValue());
 			getTxtAriaDescriptionPanne().setValue(jsonObject.get("description_panne").isString().stringValue());
-			getTxtDateCreation().setValue(jsonObject.get("date_creation_fiche").isString().stringValue());
+//			getTxtDateCreation().setValue(jsonObject.get("date_creation_fiche").isString().stringValue());
 			
 			getTxtAriaCommEtatFiche().setValue(jsonObject.get("commentaire_etat").isString().stringValue());
-			getTxtAriaAccessoires().setValue(jsonObject.get("accessoire").isString().stringValue());
-			getTxtAriaRemarque().setValue(jsonObject.get("remarque").isString().stringValue());
-			getTxtAriaObservation().setValue(jsonObject.get("observation").isString().stringValue());
-			getRaye().setValue(jsonObject.get("raye").isString().stringValue());
-			getSubitUnChoc().setValue(jsonObject.get("subit_choc").isString().stringValue());
-			getVisOuvert().setValue(jsonObject.get("vis_ouvert").isString().stringValue());
+//			getTxtAriaAccessoires().setValue(jsonObject.get("accessoire").isString().stringValue());
+//			getTxtAriaRemarque().setValue(jsonObject.get("remarque").isString().stringValue());
+//			getTxtAriaObservation().setValue(jsonObject.get("observation").isString().stringValue());
+//			getRaye().setValue(jsonObject.get("raye").isString().stringValue());
+//			getSubitUnChoc().setValue(jsonObject.get("subit_choc").isString().stringValue());
+//			getVisOuvert().setValue(jsonObject.get("vis_ouvert").isString().stringValue());
 			if (!jsonObject.get("rapport_diagnostique").isString().stringValue().equalsIgnoreCase("") ){
 		    		btnCreateDevis.setVisible(true);
 			lblTitreIdDevis.setText("Id Devis");

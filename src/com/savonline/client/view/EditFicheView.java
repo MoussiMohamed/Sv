@@ -166,13 +166,13 @@ private FlexTable flexDevis;
 		lstGarantie.addItem("Oui");
 		lstGarantie.addItem("Non");
 		lstEtatFiche=new ListBox();
-		lstEtatFiche.addItem("en attente de traitement");
-		lstEtatFiche.addItem("Ouvert");
-		lstEtatFiche.addItem("En cours de verification");
-		lstEtatFiche.addItem("En attante de confirmation de devis");
-		lstEtatFiche.addItem("En cours de reparaion");
-		lstEtatFiche.addItem("reparation termine");
-		lstEtatFiche.addItem("Ferme");
+		lstEtatFiche.addItem("Reception");
+		lstEtatFiche.addItem("En cours de diagnostique");
+		lstEtatFiche.addItem("Materiel chez le fournisseur");
+		lstEtatFiche.addItem("Sous devis");
+		lstEtatFiche.addItem("Reparation");
+		lstEtatFiche.addItem("Sortie");
+		lstEtatFiche.addItem("Preleve");
 		
 		lstTechnicien=new ListBox();
 		

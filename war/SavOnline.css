@@ -1,6 +1,9 @@
-
+.colorListEtatFiche{
+	color:red;
+}
  .gwt-DecoratorPanel {
 }
+
 .deconnectBtn{
 	position: relative;
 	left: 230%;

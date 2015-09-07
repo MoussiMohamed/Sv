@@ -44,7 +44,7 @@ $db=new DBConnection('localhost','root','','db_sav');
 		
 		case "DeletePrivilege":		deletePrivilege($db,$obj);break;
 		
-		case "SuiviFiche":					suiviFiche($db,$obj);break;
+		case "SuiviFiche":			suiviFiche($db,$obj);break;
 	}
 	
 }

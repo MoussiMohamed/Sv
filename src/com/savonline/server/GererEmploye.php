@@ -15,6 +15,11 @@ function addEmploye($db,$obj){
 	emailEmp,passwordEmp)
 	values ('$nom','$prenom','$adresse','$numTelPort','$numTelFix','$Email','$Pwd')";
 	$res=$db->rq($req);
+	$lastIdEmploye=$db->last_id();
+	echo $lastIdEmploye;
+	$reqAttribRole="insert into attribution_role(id_employe,id_role) values ('$lastIdEmploye',2)";
+	$execReq=$db->rq($reqAttribRole);
+	echo "ok";
 }
 
 function DisplayLstEmploye($obj,$db){

@@ -108,7 +108,7 @@ if(display.getTxtLogin().getValue().equals("")){
 								Cookies.setCookie("RoleName",jsonObject.get("role").isString().stringValue());
 								Cookies.setCookie("ID_employe",jsonObject.get("id_employe").isString().stringValue());
 								Cookies.setCookie("Email",display.getTxtLogin().getValue());
-								eventBus.fireEvent(new AuthentifEvent());
+								eventBus.fireEvent(new AuthentifEvent(Cookies.getCookie("RoleName"),Cookies.getCookie("ID_employe")));
 							}
 							
 //							if(jsonObject.get("role").isString().stringValue().equalsIgnoreCase("")){

@@ -111,7 +111,7 @@ public class SuiviFichePresenter implements Presenter {
 
 
 
-	public SuiviFichePresenter(HandlerManager eventBus,RequestBuilder requesBuilder, Display display){
+	public SuiviFichePresenter(HandlerManager eventBus,RequestBuilder requesBuilder, final Display display){
 		this.eventBus=eventBus;
 		this.requestBuilder = requesBuilder;
 		this.display=display;
@@ -129,11 +129,15 @@ public class SuiviFichePresenter implements Presenter {
 			jsonObj.put("idClient", new JSONString(Cookies.getCookie("ID_employe")));
 			requesBuilder.sendRequest("jsonObj="+jsonObj.toString(), new RequestCallback() {
 
-				@Override
 				public void onResponseReceived(Request request, Response response) {
 
-					//Window.alert(response.getText());
+					// parse the response text into JSON
+					//JSONValue jsonValue = JSONParser.parseLenient(response.getText());
+
 					jsonValue = JSONParser.parseStrict(response.getText());
+					
+						
+					
 					if ((jsonObject = jsonValue.isObject()) == null) {
 						Window.alert("Error parsing the JSON");
 						// Possibilites: error during download,
@@ -150,23 +154,16 @@ public class SuiviFichePresenter implements Presenter {
 					if ((jsonArray = jsonValue.isArray()) == null) {
 						Window.alert("Error parsing the JSON");
 					}
-					
-					
-//					if (Cookies.getCookie("RoleName").equalsIgnoreCase("Technicien")){
-						
-//					SuiviFichePresenter.this.display.getBAssigner().setEnabled(false);
-//					SuiviFichePresenter.this.display.getLstTechnicien().setEnabled(false);
-//					SuiviFichePresenter.this.display.getBtnAjouterFiche().setEnabled(true);
-//					SuiviFichePresenter.this.display.getBtnAnnulerF().setEnabled(false);
-//					}
-//					SuiviFichePresenter.this.display.setSuiviData(jsonArray);
-//					SuiviFichePresenter.this.display.getBtnAnnulerF().setVisible(false);
-				Window.alert("ok");
+
+
+					display.setSuiviData(jsonArray);
+
 				}
 
-				@Override
+
+				
 				public void onError(Request request, Throwable exception) {
-					SuiviFichePresenter.this.display.setLblResultInsert("Error with HTTP code :"+ exception.toString());
+					Window.alert("Error with HTTP code :"+ exception.toString());
 
 				}
 			});
