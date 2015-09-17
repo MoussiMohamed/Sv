@@ -72,7 +72,8 @@ public class AuthentificationView extends Composite implements AuthentificationP
 		
 		DecoratorPanel decPanel=new DecoratorPanel();
 		decPanel.add(flexAuthent);
-		decPanel.setStyleName("positionAuthentification");
+		decPanel.getElement().getStyle().setBackgroundColor("#000000");
+//		decPanel.setStyleName("positionAuthentification");
 		return decPanel;
 	}
 	

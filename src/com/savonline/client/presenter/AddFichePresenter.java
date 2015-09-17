@@ -90,12 +90,45 @@ public class AddFichePresenter implements Presenter {
 		
 	
 	}
+	public static boolean isNumber(String str) {
+	     try {
+	             Integer.parseInt(str);
+	             return true;
+	     }
+	     catch(NumberFormatException e) {
+	             return false;
+	     }
+	}
 
+	public boolean isValidEmail(Object value) {
+        if(value == null) return true;
+        
+        String emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.(?:[a-zA-Z]{2,6})$";
+        
+        boolean valid = false;
+        
+        if(value.getClass().toString().equals(String.class.toString())) {
+                valid = ((String)value).matches(emailPattern);
+        } else {
+                valid = ((Object)value).toString().matches(emailPattern);
+        }
+
+        return valid;
+}
 	public void bind(){
 		display.getBtnAddFicheRec().addClickHandler(new ClickHandler() {
 			
 			public void onClick(ClickEvent event) {
-				
+				display.setLnom("");
+				display.setLprenom("");
+				display.setLadresse("");
+				display.setLnumTelPort("");
+				display.setLemail("");
+				display.setLmodele("");
+				display.setLmarque("");
+				display.setLnumSerie("");
+				display.setLdescriptionPanne("");
+				display.setLnumTelFix("");
 				if (display.getTxtNom().getValue().equalsIgnoreCase("")){
 					display.setLnom(" *");
 
@@ -109,15 +142,20 @@ public class AddFichePresenter implements Presenter {
 				else if(display.getTxtAdresse().getValue().equalsIgnoreCase("")){
 						display.setLadresse(" *");
 					}
-				else if(display.getTxtNumTelPort().getValue().equalsIgnoreCase("")){
-						display.setLnumTelPort(" *");
+				else if(display.getTxtNumTelPort().getValue().equalsIgnoreCase("")
+						||!(isNumber(display.getTxtNumTelPort().getValue()))){
+						display.setLnumTelPort(" required numeric");
 					}
 				
-//				else if(display.getTxtNumTelFix().getValue().equalsIgnoreCase("")){
-//						display.setLnumTelFix(" *");
-//					}
-				else if(display.getTxtEmail().getValue().equalsIgnoreCase("")){
-						display.setLemail(" *");
+				else if(!(display.getTxtNumTelFix().getValue().equalsIgnoreCase(""))
+						&& !(isNumber(display.getTxtNumTelFix().getValue()))){
+					
+							display.setLnumTelFix("required numeric");
+					
+					}
+				else if(display.getTxtEmail().getValue().equalsIgnoreCase("")
+						||!(isValidEmail(display.getTxtEmail().getValue()))){
+						display.setLemail(" required email format");
 					}
 				
 				else if(display.getTxtModele().getValue().equalsIgnoreCase("")){

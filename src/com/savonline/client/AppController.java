@@ -22,6 +22,7 @@ import com.savonline.client.presenter.Presenter;
 import com.savonline.client.presenter.RolesPresenter;
 import com.savonline.client.presenter.SuiviFichePresenter;
 import com.savonline.client.presenter.TopMenuPresenter;
+import com.savonline.client.presenter.StatisticFichePresenter;
 import com.savonline.client.view.AddEmployeView;
 import com.savonline.client.view.AddFicheView;
 import com.savonline.client.view.AddPrivilegeView;
@@ -29,6 +30,7 @@ import com.savonline.client.view.AffichPrivilegeView;
 import com.savonline.client.view.AfficheFicheView;
 import com.savonline.client.view.AuthentificationView;
 import com.savonline.client.view.DisplayEmployeView;
+import com.savonline.client.view.StatisticFicheView;
 import com.savonline.client.view.EditFicheView;
 import com.savonline.client.view.MenuView;
 import com.savonline.client.view.RolesView;
@@ -146,6 +148,16 @@ else{
 					
 					History.newItem("list");
 				}
+				
+				else if (a.equalsIgnoreCase("Materiel")){
+
+					History.newItem("stats");
+				}
+				
+				else if (a.equalsIgnoreCase("Consulter Privilege")){
+
+					History.newItem("ViewPrivilege");
+				}
 			}
 		});
 
@@ -252,6 +264,12 @@ else{
 				presenter = new DisplayEmployePresenter(eventBus, requestBuilder, new DisplayEmployeView());
 			}
 			
+			else if (token.equals("stats")) {
+				presenter = new StatisticFichePresenter(eventBus,requestBuilder, new StatisticFicheView());
+				//presenter = new DashboardPresenter(eventBus, requestBuilder, new DashboardView());
+
+			}
+			
 			else if (token.equals("addPriv")){
 				presenter = new AddPrivilegePresenter(eventBus, requestBuilder, new AddPrivilegeView());
 			} 
@@ -277,6 +295,8 @@ else{
 
 				presenter = new AddFichePresenter(eventBus,requestBuilder, new AddFicheView());
 			}
+			
+			
 
 
 			if (presenter != null) {

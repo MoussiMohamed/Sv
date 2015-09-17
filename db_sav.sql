@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: 127.0.0.1
--- Généré le : Mar 08 Septembre 2015 à 01:29
+-- Généré le : Jeu 17 Septembre 2015 à 04:27
 -- Version du serveur: 5.5.10
 -- Version de PHP: 5.3.6
 
@@ -40,7 +40,8 @@ CREATE TABLE IF NOT EXISTS `attribution_devis_reparation` (
 INSERT INTO `attribution_devis_reparation` (`id_fiche`, `id_devis_reparation`, `date_attrib_devis_reparation`) VALUES
 (2, 1, NULL),
 (3, 3, NULL),
-(4, 2, NULL);
+(4, 2, NULL),
+(5, 6, NULL);
 
 -- --------------------------------------------------------
 
@@ -64,7 +65,8 @@ INSERT INTO `attribution_etat_fiche` (`id_fiche`, `id_etat_fiche`, `date_attribu
 (1, 1, '2015-09-03'),
 (2, 2, '2015-09-03'),
 (3, 3, '2015-09-03'),
-(4, 4, '2015-09-03');
+(4, 4, '2015-09-03'),
+(5, 5, '2015-09-09');
 
 -- --------------------------------------------------------
 
@@ -87,7 +89,8 @@ CREATE TABLE IF NOT EXISTS `attribution_fiche` (
 INSERT INTO `attribution_fiche` (`id_employe`, `id_fiche`, `date_attribution_fiche`) VALUES
 (1, 4, NULL),
 (3, 4, NULL),
-(4, 4, NULL);
+(4, 4, NULL),
+(4, 5, NULL);
 
 -- --------------------------------------------------------
 
@@ -181,7 +184,7 @@ CREATE TABLE IF NOT EXISTS `client` (
   `email` varchar(50) DEFAULT NULL,
   `mot_passe` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id_client`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `client`
@@ -191,7 +194,8 @@ INSERT INTO `client` (`id_client`, `nom_Client`, `prenom_client`, `adresse`, `nu
 (1, 'Moussi', 'Mohamed', 'Tunis', 21550705, 21550705, 'msi.moussi@gmail.com', 'cwco72'),
 (2, 'Moussi', 'Mohamed', 'Tunis', 21550705, 21550705, 'msi.moussi@gmail.com', 'q7gor'),
 (3, 'MSI', 'Moussi', 'Paris', 2147483647, 2147483647, 'msi.moussi@gmail.com', 'j6qcx'),
-(4, 'Msi', 'mmm', 'mmm', 222, 2222, 'kjb', 'd6ldl');
+(4, 'Msi', 'mmm', 'mmm', 222, 2222, 'kjb', 'd6ldl'),
+(5, 'Sadki', 'Ahmed', 'Tunis', 25252525, 71000165, 'sadki.ahmed@gmail.com', 'r5mpx');
 
 -- --------------------------------------------------------
 
@@ -206,7 +210,7 @@ CREATE TABLE IF NOT EXISTS `devis_reparation` (
   `Commentaire_Devis` text NOT NULL,
   `date_creation_devis` date DEFAULT NULL,
   PRIMARY KEY (`id_devis_reparation`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Contenu de la table `devis_reparation`
@@ -215,7 +219,8 @@ CREATE TABLE IF NOT EXISTS `devis_reparation` (
 INSERT INTO `devis_reparation` (`id_devis_reparation`, `rapport_diagnostique`, `devis`, `Commentaire_Devis`, `date_creation_devis`) VALUES
 (1, 'panne de dÃ©marrage systÃ¨me', 'formatage et installation windows 10 avec  les pilotes', 'ajout des logiciels (winrar, antivirus, adobe reader)', NULL),
 (2, 'test', 'tests', 'test', NULL),
-(3, 'pile CMOS expirÃ©', 'changement de pile CMOS et configuration de temps', 'comment', NULL);
+(3, 'pile CMOS expirÃ©', 'changement de pile CMOS et configuration de temps', 'comment', NULL),
+(6, 'Probleme de ventilateur de boite d alimentation', 'Changement de ventilateur\nNettoyage de carte mÃ¨re\nFormatage PC', 'Commentaire', NULL);
 
 -- --------------------------------------------------------
 
@@ -277,7 +282,7 @@ CREATE TABLE IF NOT EXISTS `etat_fiche` (
   `nom_etat` varchar(50) DEFAULT NULL,
   `commentaire_etat` text,
   PRIMARY KEY (`id_etat_fiche`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `etat_fiche`
@@ -287,7 +292,8 @@ INSERT INTO `etat_fiche` (`id_etat_fiche`, `nom_etat`, `commentaire_etat`) VALUE
 (1, 'en attente de traitement', 'comment'),
 (2, 'en attente de traitement', 'comment'),
 (3, 'Reception', 'comment'),
-(4, 'Sous devis', 'egzgez');
+(4, 'Sous devis', 'egzgez'),
+(5, 'En cours de diagnostique', 'Urgent');
 
 -- --------------------------------------------------------
 
@@ -307,7 +313,7 @@ CREATE TABLE IF NOT EXISTS `fiche` (
   PRIMARY KEY (`id_fiche`),
   KEY `id_client` (`id_client`),
   KEY `id_materiel` (`id_materiel`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `fiche`
@@ -317,7 +323,8 @@ INSERT INTO `fiche` (`id_fiche`, `date_creation_fiche`, `date_fermeture_fiche`, 
 (1, '2015-09-03 16:15:15', NULL, NULL, 1, 'Bootage', 'observation', 1),
 (2, '2015-09-03 16:01:45', NULL, NULL, 2, 'Bootage', 'observation', 2),
 (3, '2015-09-04 13:24:10', NULL, NULL, 3, 'Disque dur', 'observation', 3),
-(4, '2015-09-08 01:23:30', NULL, NULL, 4, 'dvsg', 'gezg', 4);
+(4, '2015-09-08 01:23:30', NULL, NULL, 4, 'dvsg', 'gezg', 4),
+(5, '2015-09-13 13:12:09', NULL, NULL, 5, 'Ventilateur', 'observation', 5);
 
 -- --------------------------------------------------------
 
@@ -360,7 +367,7 @@ CREATE TABLE IF NOT EXISTS `materiel` (
   `vis_ouvert` varchar(150) NOT NULL,
   `id_fournisseur` int(8) NOT NULL,
   PRIMARY KEY (`id_materiel`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `materiel`
@@ -370,7 +377,8 @@ INSERT INTO `materiel` (`id_materiel`, `modele`, `marque`, `numero_serie`, `stat
 (1, 'Dell', 'Dell', '6541681', '---', 'accessoire', 'remarque', 'oui', 'oui', 'oui', 0),
 (2, 'Inspiron', 'Dell', '2155208', '---', 'Accessoire', 'Remarque', 'Oui', 'Oui', '3 vis oouverts', 0),
 (3, 'Paillon', 'HP', '2656513651', '---', 'clavier', 'remarque', 'non', 'non', 'non', 0),
-(4, 'lkn', 'kj', '651', '---', 'gzeg', 'zegze', 'fezf', 'gz', 'gzegz', 0);
+(4, 'lkn', 'kj', '651', '---', 'gzeg', 'zegze', 'fezf', 'gz', 'gzegz', 0),
+(5, 'Inspiron N5110', 'Dell', '3246982547', '---', 'Disque dur externe', 'bruit', 'Oui', 'Non', 'Non', 0);
 
 -- --------------------------------------------------------
 
@@ -403,7 +411,7 @@ CREATE TABLE IF NOT EXISTS `privilege` (
   `id_privilege` int(8) NOT NULL AUTO_INCREMENT,
   `privilege` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_privilege`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Contenu de la table `privilege`

@@ -41,6 +41,8 @@ public AbsolutePanel absolutePanel;
 
 		JSONObject jsonObject = new JSONObject();
 		boolean colored = false;
+		flexData.setHTML(0, 0, "ID");
+		flexData.setHTML(0, 1, "Privilege");
 		for (int i = 0 ; i < data.size() ; i++){
 
 			jsonObject =  data.get(i).isObject();
@@ -52,13 +54,13 @@ public AbsolutePanel absolutePanel;
 //				flexData.setHTML(i, 0, "Id");
 //				flexData.setHTML(i, 1, "Privilege");
 			
-				flexData.setWidget(i, 0, new Label(jsonObject.get("id_privilege").isString().stringValue()));
-				flexData.setWidget(i, 1, new Label(jsonObject.get("privilege").isString().stringValue()));
-				flexData.setWidget(i, 2, imgBtnDelete);
+				flexData.setWidget(i+1, 0, new Label(jsonObject.get("id_privilege").isString().stringValue()));
+				flexData.setWidget(i+1, 1, new Label(jsonObject.get("privilege").isString().stringValue()));
+				flexData.setWidget(i+1, 2, imgBtnDelete);
 
 				if(!colored){
 					for(int k=0;k<2;k++){
-						cellFormatterallflexData.setStyleName(i, k, "flexRow");
+						cellFormatterallflexData.setStyleName(i+1, k, "flexRow");
 					}
 					colored = true;
 				}else{

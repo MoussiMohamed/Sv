@@ -712,8 +712,8 @@ public void setDataEdit(JSONArray data,String TypeElement){
 			getRaye().setValue(jsonObject.get("raye").isString().stringValue());
 			getSubitUnChoc().setValue(jsonObject.get("subit_choc").isString().stringValue());
 			getVisOuvert().setValue(jsonObject.get("vis_ouvert").isString().stringValue());
-			if (!jsonObject.get("rapport_diagnostique").isString().stringValue().equalsIgnoreCase("") ){
-		    		btnCreateDevis.setVisible(true);
+			if (jsonObject.get("rapport_diagnostique")!=null ){
+		    		
 			lblTitreIdDevis.setText("Id Devis");
 			lblTitreRapport.setText("Rapport");
 			lbltitreDevis.setText("Devis");
@@ -756,7 +756,7 @@ public void setDataEdit(JSONArray data,String TypeElement){
 		txtAriaCommEtatFiche.setEnabled(false);
 		btnValider.setVisible(false);
 		btnAnnuler.setVisible(false);
-		btnCreateDevis.setVisible(false);
+//		btnCreateDevis.setVisible(false);
 		
 		for (int i = 0 ; i < data.size() ; i++){
 			jsonObject =  data.get(i).isObject();
@@ -784,8 +784,8 @@ public void setDataEdit(JSONArray data,String TypeElement){
 				getSubitUnChoc().setValue(jsonObject.get("subit_choc").isString().stringValue());
 				getVisOuvert().setValue(jsonObject.get("vis_ouvert").isString().stringValue());
 				
-				    if (!jsonObject.get("rapport_diagnostique").isString().stringValue().equalsIgnoreCase("") ){
-				    	btnCreateDevis.setVisible(true);
+				    if (jsonObject.get("rapport_diagnostique")!=null ){
+				    	btnCreateDevis.setVisible(false);
 				lblTitreIdDevis.setText("Id Devis");
 				lblTitreRapport.setText("Rapport");
 				lbltitreDevis.setText("Devis");
@@ -795,7 +795,7 @@ public void setDataEdit(JSONArray data,String TypeElement){
 				txtDevis.setText(jsonObject.get("devis").isString().stringValue());
 				txtCommentaireDevis.setText(jsonObject.get("Commentaire_Devis").isString().stringValue());
 				    }else{
-				    	btnCreateDevis.setVisible(false);
+				    	btnCreateDevis.setVisible(true);
 				    }
 				 
 		}

@@ -4,6 +4,7 @@ require_once 'db.class.php';
 require_once 'GererFiche.php';
 require_once 'GererEmploye.php';
 require_once 'ParametreSAV.php';
+require_once 'Statistic.php';
 
 $db=new DBConnection('localhost','root','','db_sav');
  if(isset($_POST['jsonObj'])){
@@ -45,6 +46,8 @@ $db=new DBConnection('localhost','root','','db_sav');
 		case "DeletePrivilege":		deletePrivilege($db,$obj);break;
 		
 		case "SuiviFiche":			suiviFiche($db,$obj);break;
+		
+		case "getFicheStatus":  	getFicheStatus($db);break;
 	}
 	
 }

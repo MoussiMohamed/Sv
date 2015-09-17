@@ -4,6 +4,7 @@
 
 	<inherits name="com.google.gwt.json.JSON" />
 	<inherits name='com.google.gwt.user.User' />
+	<inherits name='com.google.gwt.visualization.Visualization'/>
 
 <!-- Linking fails in GWT 2.7 without the line below -->
 <!-- <inherits name="com.smartgwt.SmartGwt"/> -->
